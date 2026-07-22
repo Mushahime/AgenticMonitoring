@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Daily watch on agentic commerce and payments: protocols, networks, research and public signals.">
+<title>Watch - Agentic Commerce &amp; Payments</title>
+<style>
+  :root{
+    --brand-navy:#123940;
+    --brand-coral:#FF8564;
+    --brand-mint:#00E4C5;
+    --brand-purple:#7C7BAD;
+    --brand-paper:#F6F6F6;
+
+    --bg:#F6F6F6;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2F2;
+    --ink:#123940;
+    --ink-muted:#5C7278;
+    --line:#DCE3E3;
+    --accent:#00A896;
+    --accent-2:#0B8C7C;
+    --on-accent:#FFFFFF;
+
+    --mint-bg:#D8F7F0; --mint-fg:#0B6E5F;
+    --coral-bg:#FFE4D8; --coral-fg:#B44B1E;
+    --navy-bg:#DCE7E9; --navy-fg:#123940;
+    --purple-bg:#EAE9F5; --purple-fg:#4B4386;
+
+    --shadow: 0 1px 2px rgba(18,57,64,.07), 0 8px 22px -10px rgba(18,57,64,.22);
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0D2226;
+      --surface:#123940;
+      --surface-2:#16444C;
+      --ink:#EAF3F2;
+      --ink-muted:#9FB8BA;
+      --line:#22474D;
+      --accent:#2FE3C4;
+      --accent-2:#3FE0C7;
+      --on-accent:#0D2226;
+
+      --mint-bg:#0E3A34; --mint-fg:#5FEAD3;
+      --coral-bg:#3D2416; --coral-fg:#FFB08F;
+      --navy-bg:#1B4750; --navy-fg:#9FD8DE;
+      --purple-bg:#2B2748; --purple-fg:#C9C4F0;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px -10px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0D2226; --surface:#123940; --surface-2:#16444C; --ink:#EAF3F2; --ink-muted:#9FB8BA; --line:#22474D;
+    --accent:#2FE3C4; --accent-2:#3FE0C7; --on-accent:#0D2226;
+    --mint-bg:#0E3A34; --mint-fg:#5FEAD3;
+    --coral-bg:#3D2416; --coral-fg:#FFB08F;
+    --navy-bg:#1B4750; --navy-fg:#9FD8DE;
+    --purple-bg:#2B2748; --purple-fg:#C9C4F0;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px -10px rgba(0,0,0,.55);
+  }
+  :root[data-theme="light"]{
+    --bg:#F6F6F6; --surface:#FFFFFF; --surface-2:#EEF2F2; --ink:#123940; --ink-muted:#5C7278; --line:#DCE3E3;
+    --accent:#00A896; --accent-2:#0B8C7C; --on-accent:#FFFFFF;
+    --mint-bg:#D8F7F0; --mint-fg:#0B6E5F;
+    --coral-bg:#FFE4D8; --coral-fg:#B44B1E;
+    --navy-bg:#DCE7E9; --navy-fg:#123940;
+    --purple-bg:#EAE9F5; --purple-fg:#4B4386;
+    --shadow: 0 1px 2px rgba(18,57,64,.07), 0 8px 22px -10px rgba(18,57,64,.22);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:Georgia,"Iowan Old Style","Palatino Linotype","Times New Roman",serif;
+    font-weight:700;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{font-family:"IBM Plex Mono","SF Mono","Cascadia Code",Consolas,"Courier New",monospace;}
+
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Top nav ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; gap:22px;
+    padding:14px 24px;
+    max-width:1160px; margin:0 auto;
+    flex-wrap:wrap;
+  }
+  .logo-link{display:block;line-height:0;border-radius:6px;}
+  .logo-link:focus-visible{outline:2px solid var(--accent-2); outline-offset:3px;}
+  .logo-mark{height:26px; width:auto; display:block;}
+  .logo-color{display:block;}
+  .logo-white{display:none;}
+  @media (prefers-color-scheme: dark){ .logo-color{display:none;} .logo-white{display:block;} }
+  :root[data-theme="dark"] .logo-color{display:none;}
+  :root[data-theme="dark"] .logo-white{display:block;}
+  :root[data-theme="light"] .logo-color{display:block;}
+  :root[data-theme="light"] .logo-white{display:none;}
+
+  nav.pages{
+    display:flex; flex-wrap:wrap; gap:4px 2px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;
+    font-size:12.5px;
+  }
+  nav.pages a{
+    padding:7px 11px;
+    border-radius:100px;
+    text-decoration:none;
+    color:var(--ink-muted);
+    white-space:nowrap;
+    transition:background .12s ease,color .12s ease;
+  }
+  nav.pages a:hover{color:var(--ink); background:var(--surface-2);}
+  nav.pages a.active{color:#052E27; background:var(--brand-mint);}
+  nav.pages a:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
+
+  /* ---------- Pages ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+
+  header.masthead{padding:34px 0 22px;}
+  .eyebrow{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-2); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;}
+  h1.title{font-size:clamp(26px,4vw,40px);line-height:1.1;letter-spacing:-.01em;}
+  h1.page-title{font-size:clamp(24px,3.6vw,34px);line-height:1.12;}
+  .subtitle{max-width:72ch;color:var(--ink-muted);margin-top:12px;font-size:15px;}
+  .masthead-meta{
+    margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 20px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;color:var(--ink-muted);
+  }
+  .masthead-meta strong{color:var(--ink);font-weight:600;}
+  .brand-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;font-weight:600;
+    background:var(--brand-mint);color:#052E27;text-decoration:none;
+    padding:6px 14px;border-radius:100px;transition:filter .12s ease;
+  }
+  .brand-btn:hover, .brand-btn:focus-visible{filter:brightness(0.94);}
+  .brand-btn:focus-visible{outline:2px solid var(--brand-navy); outline-offset:2px;}
+
+  section.pagehead{padding:30px 0 6px;border-bottom:1px solid var(--line);margin-bottom:26px;}
+
+  /* ---------- Stat rail (linked tiles) ---------- */
+  .stat-rail{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;margin:22px 0 34px;
+  }
+  a.stat{
+    background:var(--surface);padding:18px 16px 16px;text-decoration:none;color:inherit;
+    display:block; transition:background .12s ease;
+  }
+  a.stat:hover{background:var(--surface-2);}
+  a.stat:focus-visible{outline:2px solid var(--accent-2); outline-offset:-2px;}
+  .stat .num{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-variant-numeric:tabular-nums;
+    font-size:22px;font-weight:600;color:var(--accent);display:block;
+  }
+  .stat .label{font-size:12px;color:var(--ink-muted);margin-top:4px;line-height:1.35;}
+  .stat .src{
+    font-size:11px;color:var(--ink-muted);opacity:.8;margin-top:8px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;
+    display:flex; align-items:center; gap:5px;
+  }
+  .stat .src::before{content:"→"; color:var(--accent);}
+
+  /* ---------- Section blocks within pages ---------- */
+  .block{padding:8px 0 36px;}
+  .block-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+  .block-head h2{font-size:20px;}
+  .block-head .count{font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12px;color:var(--ink-muted);}
+  .block-note{font-size:13px;color:var(--ink-muted);margin:-6px 0 18px;max-width:72ch;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .grid.featured{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;
+    transition:transform .14s ease;
+  }
+  .card:hover{transform:translateY(-2px);}
+  .card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .tag{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.06em;padding:3px 9px;border-radius:100px;white-space:nowrap;
+  }
+  .tag-protocole{background:var(--mint-bg);color:var(--mint-fg);}
+  .tag-reseau{background:var(--coral-bg);color:var(--coral-fg);}
+  .tag-commerce{background:var(--navy-bg);color:var(--navy-fg);}
+  .tag-marche{background:var(--purple-bg);color:var(--purple-fg);}
+  .tag-recherche{background:transparent;color:var(--mint-fg);border:1px solid var(--mint-fg);}
+  .tag-linkedin{background:transparent;color:var(--coral-fg);border:1px solid var(--coral-fg);}
+
+  .card-date{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11px;color:var(--ink-muted);
+    font-variant-numeric:tabular-nums;text-align:right;
+  }
+  .card h3{font-size:17px;line-height:1.3;}
+  .card h3 a{text-decoration:none;border-bottom:1px solid transparent;}
+  .card h3 a:hover, .card h3 a:focus-visible{border-bottom-color:var(--accent-2);}
+  .card h3 a:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;}
+  .card p{font-size:14px;color:var(--ink-muted);margin:0;flex:1;}
+  .card .src{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11px;color:var(--ink-muted);
+    opacity:.8;display:flex;align-items:center;gap:6px;
+  }
+  .card .src::before{content:"→";color:var(--accent);}
+  .card.lede{grid-column:span 1;}
+  @media(min-width:760px){
+    .grid.featured .card:first-child{grid-column:span 2;}
+    .grid.featured .card:first-child h3{font-size:19px;}
+  }
+  .li-card .author{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12px;font-weight:600;color:var(--ink);
+  }
+
+  /* ---------- Digest list (Cette quinzaine) ---------- */
+  .digest{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);}
+  .digest-row{
+    display:grid;grid-template-columns:78px 130px 1fr auto;gap:14px;align-items:baseline;
+    padding:12px 16px;border-bottom:1px solid var(--line);
+  }
+  .digest-row:last-child{border-bottom:none;}
+  .digest-row:nth-child(odd){background:var(--surface-2);}
+  .digest-date{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;color:var(--ink-muted);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+  .digest-row .tag{justify-self:start;}
+  .digest-title a{font-size:14.5px;text-decoration:none;border-bottom:1px solid transparent;}
+  .digest-title a:hover, .digest-title a:focus-visible{border-bottom-color:var(--accent-2);}
+  .digest-title a:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;}
+  .digest-src{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11px;color:var(--ink-muted);
+    opacity:.75;white-space:nowrap;
+  }
+  @media(max-width:640px){
+    .digest-row{grid-template-columns:1fr;gap:6px;padding:12px 14px;}
+    .digest-date{order:1;} .digest-row .tag{order:2;} .digest-title{order:3;} .digest-src{order:4;}
+  }
+
+  /* ---------- FACT page ---------- */
+  .fact-hero{
+    background:var(--brand-navy);color:var(--brand-paper);border-radius:var(--radius);
+    padding:30px 28px;margin-bottom:8px;border-left:4px solid var(--brand-coral);box-shadow:var(--shadow);
+  }
+  .fact-hero .spotlight-badge{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.08em;padding:4px 10px;border-radius:100px;background:var(--brand-coral);color:#2A1206;
+    display:inline-block;margin-right:8px;
+  }
+  .fact-hero .spotlight-badge.alt{background:var(--brand-mint);color:#052E27;}
+  .fact-hero .fdate{font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;color:rgba(246,246,246,.62);}
+  .fact-hero h1{font-size:clamp(24px,3.6vw,32px);color:#fff;margin-top:14px;}
+  .fact-hero p{color:rgba(246,246,246,.86);font-size:14.5px;max-width:80ch;margin:12px 0 0;}
+  .fact-hero blockquote{
+    margin:16px 0 0;padding:12px 16px;border-left:2px solid var(--brand-mint);
+    font-style:italic;font-size:14px;color:rgba(246,246,246,.92);
+  }
+  .fact-hero blockquote cite{display:block;margin-top:6px;font-style:normal;font-size:12px;color:rgba(246,246,246,.6);}
+  .fact-links{display:flex;flex-wrap:wrap;gap:14px 20px;margin-top:18px;}
+  .fact-links a{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12px;color:var(--brand-mint);
+    text-decoration:none;border-bottom:1px solid transparent;
+  }
+  .fact-links a:hover, .fact-links a:focus-visible{border-bottom-color:var(--brand-mint);}
+  .fact-links a:focus-visible{outline:2px solid var(--brand-mint); outline-offset:3px;}
+
+  .fact-section{padding:26px 0;border-top:1px solid var(--line);}
+  .fact-section h2{font-size:19px;margin-bottom:12px;}
+  .fact-section p{font-size:14.5px;color:var(--ink-muted);max-width:78ch;margin:0 0 10px;}
+  .fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px;}
+  .fact-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
+  .fact-tile .num{font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;color:var(--accent-2);font-size:12px;text-transform:uppercase;letter-spacing:.06em;}
+  .fact-tile h4{margin:8px 0 6px;font-size:15px;font-family:Georgia,serif;}
+  .fact-tile p{font-size:13.5px;margin:0;}
+  .fact-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;}
+  @media(max-width:640px){.fact-compare{grid-template-columns:1fr;}}
+  .fact-compare > div{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
+  .fact-compare h4{margin:0 0 8px;font-size:14px;font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-2);}
+  .fact-compare p{font-size:13.5px;color:var(--ink-muted);margin:0;}
+
+  @media (max-width:600px){
+    .wrap{padding:0 16px;}
+    .topbar-inner{padding:12px 16px;}
+  }
+
+  /* ---------- ATLAS page (reuses FACT visual language) ---------- */
+  .atlas-hero{border-left-color:var(--brand-mint);}
+  .atlas-hero .spotlight-badge{background:var(--brand-mint);color:#052E27;}
+
+  /* ---------- Freshness / schedule badge ---------- */
+  .refresh-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11px;color:var(--accent-2);
+    border:1px solid var(--accent-2);border-radius:100px;padding:3px 10px;
+  }
+  .refresh-badge::before{content:"●";font-size:8px;color:var(--accent-2);}
+
+  /* ---------- Research subsection headers ---------- */
+  .subhead{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12px;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--ink-muted);margin:26px 0 4px;padding-top:18px;border-top:1px solid var(--line);
+  }
+  .subhead:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+  .paper-list{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);}
+  .paper-row{padding:12px 16px;border-bottom:1px solid var(--line);}
+  .paper-row:last-child{border-bottom:none;}
+  .paper-row:nth-child(odd){background:var(--surface-2);}
+  .paper-row .ptitle a{font-size:14.5px;text-decoration:none;border-bottom:1px solid transparent;font-weight:600;}
+  .paper-row .ptitle a:hover, .paper-row .ptitle a:focus-visible{border-bottom-color:var(--accent-2);}
+  .paper-row .pmeta{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11px;color:var(--ink-muted);
+    margin-top:3px;
+  }
+  .paper-row .pnote{font-size:13px;color:var(--ink-muted);margin-top:6px;max-width:80ch;}
+
+  /* ---------- LinkedIn feed note ---------- */
+  .li-source-note{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;font-size:13px;color:var(--ink-muted);margin-bottom:20px;max-width:82ch;
+  }
+  .li-source-note code{font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12px;background:var(--surface);padding:1px 5px;border-radius:4px;}
+
+  /* ---------- Fime brand band ---------- */
+  .brand-band{
+    position:sticky; top:57px; z-index:19;
+    height:5px;
+    background:var(--brand-mint);
+  }
+
+  /* ---------- Protocol index (All protocols / Major protocols) ---------- */
+  .proto-list{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);}
+  .proto-row{
+    display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:baseline;
+    padding:12px 16px;border-bottom:1px solid var(--line);
+  }
+  .proto-row:last-child{border-bottom:none;}
+  .proto-row:nth-child(odd){background:var(--surface-2);}
+  .proto-row .pname{font-size:14.5px;font-weight:600;}
+  .proto-row .pname .org{font-weight:400;color:var(--ink-muted);}
+  .proto-row .pdesc{grid-column:1/-1;font-size:13px;color:var(--ink-muted);max-width:80ch;}
+  .proto-row .plink{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;
+    text-decoration:none;color:var(--accent-2);white-space:nowrap;justify-self:end;
+  }
+  .proto-row .plink:hover, .proto-row .plink:focus-visible{text-decoration:underline;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{border-top:1px solid var(--line);margin-top:20px;padding:32px 0 48px;}
+  .site-footer h2{font-size:16px;margin-bottom:8px;}
+  .site-footer p{font-size:13.5px;color:var(--ink-muted);max-width:70ch;margin:0 0 6px;}
+  .site-footer .credit{
+    margin-top:14px;font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;color:var(--ink-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+<a class="logo-link" href="#home">
+    <img class="logo-mark logo-color" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACCgAAAK5CAYAAAB3mI3nAAAACXBIWXMAABcRAAAXEQHKJvM/AAAgAElEQVR4nOzdTW4cR7Y24LSh+SVy3ICrV2B6mOiBUyswtQJRKxC1AkoroLwCyisgvQKmB40ail6BaKDHdXlX8H0I+ZQ6LYviX0VVZMbzAIS6W2qxKqIyWarzxjkNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAt/nm0+//59+HTdMsrBgA8BVXzT/+9c4CAQAAAAAA9/Vk9OefN03TW0EA4CuGpmkEFAAAAAAAgHv71pIBAAAAAAAAALkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAAAAAA2QkoAAAAAAAAAADZCSgAAAAAAAAAANkJKAAAAAAA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" alt="Fime" />
+    <img class="logo-mark logo-white" src="data:image/png;base64,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" alt="Fime" />
+</a>
+    <nav class="pages" aria-label="Navigation">
+      <a href="#home" data-page="home">Home</a>
+      <a href="#fortnight" data-page="fortnight">This Fortnight</a>
+      <a href="#network" data-page="network">Network &amp; Payments</a>
+      <a href="#commerce" data-page="commerce">Commerce</a>
+      <a href="#market" data-page="market">Market</a>
+      <a href="#research" data-page="research">Research</a>
+      <a href="#linkedin" data-page="linkedin">LinkedIn</a>
+      <a href="#protocols" data-page="protocols">Protocols</a>
+      <a href="#perplexity" data-page="perplexity">Perplexity</a>
+      <a href="#fact" data-page="fact">FACT</a>
+      <a href="#atlas" data-page="atlas">ATLAS</a>
+      <a href="#archive" data-page="archive">Archive</a>
+    </nav>
+  </div>
+</div>
+<div class="brand-band" aria-hidden="true"></div>
+<section class="page" id="page-home" data-page="home">
+  <div class="wrap">
+    <header class="masthead">
+      <div class="eyebrow"><span class="dot"></span>Watch &middot; Agentic Commerce &amp; Payments</div>
+      <h1 class="title">What agents are buying, paying and negotiating today</h1>
+      <p class="subtitle">Edition of July 22, 2026. Sources: live web research, arXiv, SSRN, trade press and public LinkedIn. Signals cover the last two months, refreshed daily.</p>
+      <div class="masthead-meta">
+        <span class="refresh-badge">Daily collection &middot; 08:00 Paris time</span>
+        <a class="brand-btn" href="https://www.fime.com" target="_blank" rel="noopener">fime.com &rarr;</a>
+      </div>
+    </header>
+
+    <div class="block">
+      <div class="block-head"><h2>Top of the stack</h2><span class="count">10 most consequential signals, mostly from the last week</span></div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Commerce</span><span class="card-date">Jul 21, 2026</span></div>
+          <h3><a href="https://www.searchenginejournal.com/70-of-top-retailers-are-invisible-to-agentic-commerce-heres-why/" target="_blank" rel="noopener">70% of top retailers are invisible to agentic commerce</a></h3>
+          <p>Most retail catalogs and product feeds still aren't structured in a way shopping agents can parse reliably.</p>
+          <div class="src">Search Engine Journal</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="card-date">Jul 21, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNemFfQUxQeVdqWlo1bkNZaVMydy0ySUsyNFVIb0J3eUFDWnRWOGprdENvcHdpQmM3b0d4MmFuZkhQSXUzQ2d5TkZZZEc5YVMtbVZDYWNVVlNBeUMybFFoN0hhcjdwN0dKMTRfZUpVcGZRRnZwRHU3Qy1TMjFjWDhNTERzTjdEOWhiN2U3SmYzMEljOU1BUDgxZUlrS0daakh3R2JsZ2l4VlVqcEVZemxzSnVZMVhVRVg3OVU2S2Rn?oc=5" target="_blank" rel="noopener">Beyond Keywords: how agentic commerce search understands true shopper intent</a></h3>
+          <p>Ranking for shopping agents requires modeling intent, not matching keywords.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Commerce</span><span class="card-date">Jul 20, 2026</span></div>
+          <h3><a href="https://fortune.com/2026/07/20/agentic-commerce-infrastructure-battle/" target="_blank" rel="noopener">Agentic commerce is coming, and the battle to build its infrastructure is on</a></h3>
+          <p>A survey of who's racing to own the rails underneath agent-led shopping.</p>
+          <div class="src">Fortune</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Commerce</span><span class="card-date">Jul 20, 2026</span></div>
+          <h3><a href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">Square opens free ChatGPT/Claude ordering; A-Comm's Evidence Protocol opens for comment</a></h3>
+          <p>Square undercuts delivery-app commissions for agent-originated orders, while A-Comm's draft evidence protocol enters public review through Aug 14.</p>
+          <div class="src">Digital Transactions</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-protocole">Protocol</span><span class="card-date">Jul 17, 2026</span></div>
+          <h3><a href="https://www.paymentsjournal.com/searching-for-trust-in-agentic-commerce/" target="_blank" rel="noopener">Industry-backed x402 Foundation is aimed at agentic commerce trust gaps</a></h3>
+          <p>Framing the new foundation explicitly as a response to the trust problem, not just a payments standard.</p>
+          <div class="src">PaymentsJournal</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Network</span><span class="card-date">Jul 17, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNWlRRcUZRS1h6ck0wd3Q2alRMMDBFRHFPT1EtQ3lRSFJHdUI2bUpxMWY2VjRhZXNXMjZxUzhLSlBuWkJIYWIxRmxUZzU5MkF1b1JBT1lkdHV2SDlQUzJ6YmQ0T2QweW9zWEF0UDhDSVlYUEdIQllDd1JoNkR4TXo3bE9uZzhfamxpQWFMeFlVTFdkUkR2c0hYSXdJaElWZFcwR0tobk8ybzRxelJZV3JtelFubw?oc=5" target="_blank" rel="noopener">Visa's Oliver Jenkyn: trust will decide the future of agentic commerce</a></h3>
+          <p>Visa's own group president frames trust, not features, as the deciding factor.</p>
+          <div class="src">Fast Company Middle East</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-protocole">Protocol</span><span class="card-date">Jul 16, 2026</span></div>
+          <h3><a href="https://www.pymnts.com/news/b2b-payments/2026/" target="_blank" rel="noopener">40 finance and tech giants unite to standardize agentic payments</a></h3>
+          <p>Visa, Mastercard, Amex, Stripe, Google, AWS, Shopify and Cloudflare, among others, formalize the x402 Foundation.</p>
+          <div class="src">PYMNTS</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Network</span><span class="card-date">Jul 16, 2026</span></div>
+          <h3><a href="https://www.theblock.co/post/agentic-commerce-stablecoins" target="_blank" rel="noopener">Visa: stablecoins will power micro-commerce in the AI agentic economy</a></h3>
+          <p>Stablecoin rails positioned as the settlement layer for sub-cent, high-frequency agent payments.</p>
+          <div class="src">The Block</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Network</span><span class="card-date">Jul 15, 2026</span></div>
+          <h3><a href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">Ripple joins Visa and Mastercard backing x402 as 75M payments move $24M</a></h3>
+          <p>A crypto-native rail joining the same standards body as the two largest card networks.</p>
+          <div class="src">CoinDesk</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-recherche">arXiv</span><span class="card-date">Jul 14, 2026</span></div>
+          <h3><a href="https://arxiv.org/abs/2607.12575" target="_blank" rel="noopener">x402: real adoption is far lower than the counters suggest</a></h3>
+          <p>Population-scale measurement finds 85% of counted x402 settlements are fabricated or internal to a single cluster.</p>
+          <div class="src">arXiv 2607.12575</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><h2>Key figures</h2><span class="count">every number is dated and sourced, click through for the source</span></div>
+      <div class="stat-rail">
+        <a class="stat" href="https://www.grandviewresearch.com/industry-analysis/agentic-commerce-market-report" target="_blank" rel="noopener">
+          <span class="num">$7.7B &rarr; $65.5B</span>
+          <span class="label">Global agentic commerce market, 2026 &rarr; 2033 (35.7% CAGR)</span>
+          <span class="src">Grand View Research</span>
+        </a>
+        <a class="stat" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants" target="_blank" rel="noopener">
+          <span class="num">$3-5T</span>
+          <span class="label">McKinsey's global 2030 estimate for agent-orchestrated commerce</span>
+          <span class="src">McKinsey QuantumBlack</span>
+        </a>
+        <a class="stat" href="https://www.forrester.com/blogs/agentic-payments-in-b2c-commerce-where-we-are-now/" target="_blank" rel="noopener">
+          <span class="num">$15T</span>
+          <span class="label">B2B volume through agent-to-agent exchanges by 2028 (Gartner)</span>
+          <span class="src">Forrester</span>
+        </a>
+        <a class="stat" href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">
+          <span class="num">75M / $24M</span>
+          <span class="label">x402 payments in the 30 days to Jul 15, 2026, mostly sub-dollar</span>
+          <span class="src">CoinDesk</span>
+        </a>
+        <a class="stat" href="https://www.chainalysis.com/blog/x402-agentic-payments-adoption/" target="_blank" rel="noopener">
+          <span class="num">100M+</span>
+          <span class="label">Cumulative x402 transactions on Base through Q1 2026</span>
+          <span class="src">Chainalysis</span>
+        </a>
+        <a class="stat" href="https://www.tftc.io/x402-foundation-operational-launch-ai-agent-payments" target="_blank" rel="noopener">
+          <span class="num">40</span>
+          <span class="label">Founding members of the x402 Foundation</span>
+          <span class="src">Linux Foundation</span>
+        </a>
+        <a class="stat" href="https://eco.com/support/en/articles/14845479-ap2-agent-payments-protocol-explained" target="_blank" rel="noopener">
+          <span class="num">60+</span>
+          <span class="label">Launch partners for Google's AP2 at announcement</span>
+          <span class="src">Eco / Google</span>
+        </a>
+        <a class="stat" href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html" target="_blank" rel="noopener">
+          <span class="num">&lt;$0.01</span>
+          <span class="label">Smallest transaction size Mastercard's Agent Pay for Machines settles</span>
+          <span class="src">Mastercard newsroom</span>
+        </a>
+        <a class="stat" href="https://www.eurocommerce.eu/2026/06/european-retailers-face-a-e240-320-billion-ai-opportunity-as-agentic-commerce-reshapes-the-industry/" target="_blank" rel="noopener">
+          <span class="num">&euro;240-320B</span>
+          <span class="label">AI opportunity for European retailers</span>
+          <span class="src">EuroCommerce</span>
+        </a>
+        <a class="stat" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants" target="_blank" rel="noopener">
+          <span class="num">30%</span>
+          <span class="label">Share of online commerce forecast to run through AI agents by 2030 (~$3.1T)</span>
+          <span class="src">Industry estimate</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="page" id="page-fortnight" data-page="fortnight">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">This Fortnight</h1>
+    </section>
+    <div class="block">
+      <div class="digest">
+        <div class="digest-row"><span class="digest-date">Jul 21</span><span class="tag tag-commerce">Commerce</span><span class="digest-title"><a href="https://www.searchenginejournal.com/70-of-top-retailers-are-invisible-to-agentic-commerce-heres-why/" target="_blank" rel="noopener">70% of top retailers are invisible to agentic commerce - here's why</a></span><span class="digest-src">Search Engine Journal</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 21</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNemFfQUxQeVdqWlo1bkNZaVMydy0ySUsyNFVIb0J3eUFDWnRWOGprdENvcHdpQmM3b0d4MmFuZkhQSXUzQ2d5TkZZZEc5YVMtbVZDYWNVVlNBeUMybFFoN0hhcjdwN0dKMTRfZUpVcGZRRnZwRHU3Qy1TMjFjWDhNTERzTjdEOWhiN2U3SmYzMEljOU1BUDgxZUlrS0daakh3R2JsZ2l4VlVqcEVZemxzSnVZMVhVRVg3OVU2S2Rn?oc=5" target="_blank" rel="noopener">Beyond Keywords: how agentic commerce search understands true shopper intent</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 21</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQYU5jSmptWXFrOUJ3eXNlbnhtV1g0NDNIaXZsZWV5alZ2TmYya3MzNE1mQy1VaVlDeURGMmdwWXUxTU1janphY1JBMlFCNWRpSi02TVBlal8wZlNQZDg4czE3djJ5MjlBcFdWX2hfUHAtMFJxRWxDUFZPdzRyYXFzaWVHTnZfSmotNzJZd1I3OUh6TnlUUVZhZTNKYkxVWmtXWFdGVkdCLWUwTUlmTjd0ejdFc3MxSWE4T0tZ?oc=5" target="_blank" rel="noopener">We traced 136 million x402 transactions on-chain</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 20</span><span class="tag tag-commerce">Commerce</span><span class="digest-title"><a href="https://fortune.com/2026/07/20/agentic-commerce-infrastructure-battle/" target="_blank" rel="noopener">Agentic commerce is coming - and the battle to build its infrastructure is on</a></span><span class="digest-src">Fortune</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 20</span><span class="tag tag-commerce">Commerce</span><span class="digest-title"><a href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">Square launches free ChatGPT/Claude ordering for US restaurants, no marketplace cut</a></span><span class="digest-src">Digital Transactions</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 20</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">A-Comm's draft Evidence Protocol opens for public comment through Aug 14</a></span><span class="digest-src">Digital Transactions</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 17</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://www.paymentsjournal.com/searching-for-trust-in-agentic-commerce/" target="_blank" rel="noopener">Industry-backed x402 Foundation is aimed at agentic commerce trust gaps</a></span><span class="digest-src">PaymentsJournal</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 17</span><span class="tag tag-reseau">Network</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNWlRRcUZRS1h6ck0wd3Q2alRMMDBFRHFPT1EtQ3lRSFJHdUI2bUpxMWY2VjRhZXNXMjZxUzhLSlBuWkJIYWIxRmxUZzU5MkF1b1JBT1lkdHV2SDlQUzJ6YmQ0T2QweW9zWEF0UDhDSVlYUEdIQllDd1JoNkR4TXo3bE9uZzhfamxpQWFMeFlVTFdkUkR2c0hYSXdJaElWZFcwR0tobk8ybzRxelJZV3JtelFubw?oc=5" target="_blank" rel="noopener">Visa's Oliver Jenkyn: trust will decide the future of agentic commerce</a></span><span class="digest-src">Fast Company Middle East</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 17</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQYTJPVGV4czlzQ2thNThCZ19xR0JmbHdwSDQwemFOQURSUVlRVU9RZjl3SXZ0bkZOMGdEMVgyZlBBSTd6d2MzM0tWU01FNVBERzlUOTc3Vi1xNF85YnpkYmJsT3ZEMURMY0pxY2tSRlRlLWhtZ19EN19OaG9YWmZaLVVIS255QlNSdDB1M0tiWWRoM212ZXVqd1BING5xMlJWcDlqclVaSV94ZDVrT1B6WlZCS29YTmpwTE93aVJ4MFJ1TGNFWUdwbkdR?oc=5" target="_blank" rel="noopener">"Everyone is talking about Agentic Commerce" - a year embedded across agencies</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 17</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaVJ2d0hZZnkxSUZrTldUSS1tUE5Wbkc3U25MMjhMeG16ZHRVc0VzWVFMbUdkS0x5dHFTT3hxckhzOUR1NkNRanVFRHFGdmIzVW40bW5HZHUzQjQ4VS1feFhtWUJPcTRGalctdi1pT0JBbUhmejlxdzBPU0cyNlVIbGVWVFZ4bjBpR2d1cGFBUkhyWUhSc2RjY2FVVDl6cXJoSkktd1ZUbVAzUQ?oc=5" target="_blank" rel="noopener">This week the agent-payments layer was placed under industry-wide governance</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 16</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://www.pymnts.com/news/b2b-payments/2026/" target="_blank" rel="noopener">40 finance and tech giants unite to standardize agentic payments</a></span><span class="digest-src">PYMNTS</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 16</span><span class="tag tag-reseau">Network</span><span class="digest-title"><a href="https://www.theblock.co/post/agentic-commerce-stablecoins" target="_blank" rel="noopener">Visa says stablecoins will power micro-commerce in the AI agentic economy</a></span><span class="digest-src">The Block</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 16</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxONlFXZkM2ZC03STZlZUhoY1o1bjBfZlZXMXEwQmdERHdiMTZ3QXZ5MlIyb3F2ZDJqV3AtNF8xUzZpd3BVUnlpUVJKc19KZEJubmI5VTZ6a3JSRHZGS1NOdk9JRm9TMHVfemNKdG1Qdi1pRTVjaVJ1Yk5mWTRIX1NDdi1UeUM3TmRWVUVWb3lzZw?oc=5" target="_blank" rel="noopener">The Missing Half of Agentic Commerce (Part 1 of 3)</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 16</span><span class="tag tag-reseau">Network</span><span class="digest-title"><a href="https://aimagazine.com/news/hsbc-visa-power-shopping-with-ai" target="_blank" rel="noopener">HSBC UK and Visa trial live, end-to-end agentic shopping</a></span><span class="digest-src">AI Magazine</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 15</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">Ripple joins card giants backing x402 as 75M payments move just $24M</a></span><span class="digest-src">CoinDesk</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 15</span><span class="tag tag-reseau">Network</span><span class="digest-title"><a href="https://fintech.global/2026/07/15/visa-and-thredd-move-closer-to-the-age-of-agentic-commerce/" target="_blank" rel="noopener">Thredd joins the Visa Agentic Ready Programme, starting with Zilch</a></span><span class="digest-src">FinTech Global</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 14</span><span class="tag tag-recherche">Research</span><span class="digest-title"><a href="https://arxiv.org/abs/2607.12575" target="_blank" rel="noopener">x402: real adoption is far lower than the counters suggest</a></span><span class="digest-src">arXiv</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 14</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://www.tftc.io/x402-foundation-operational-launch-ai-agent-payments" target="_blank" rel="noopener">Linux Foundation declares the x402 Foundation operationally live</a></span><span class="digest-src">TFTC</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 14</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPcTl4NDdndnRKNHdoM0FEc21OVnB1MVo3U0pMZk4taWV3dWV6MlBScXlUbTd0QTVNSU56ZEtVV2VWWXdjWTRZWFctTlpuLWNpTV9DNXZFN0JNdVNuQnRBTVZ2U2psOU5aT3RiQlpBUFpvVThlS0d6QzhjdnVYLXNUT0x0b213c1J1ZTFUQldTZ0VsSXFVN05NNlFObml4bGR6RmZoektRWXE3aEhEUnNxMzBlNjFBaWVB?oc=5" target="_blank" rel="noopener">"Agentic commerce is already here, and with it are questions of trust"</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 12</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZWdfTlBIdWlFM2F1R2hqVzJOTEJnM1ktYXNkMi1KcW5oajBjRzVHb0xmTlpfRzczU0xZTlBNYjZtdFFoNzBKanlxT0NUVVIzblhWcnhMdGdfNkdFcjhNenVWNzJDdWFGNldTQXduSWZ1MFBGb2FvbmxnRVkxa01JMWFCMFFKdTE3ZXhZQ3pTejY3c3N6WEhkZFZKZkJ2M002bnF3eDJkdEE?oc=5" target="_blank" rel="noopener">Agentic Commerce - Protocols: what I learned building a transaction simulator</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 10</span><span class="tag tag-commerce">Commerce</span><span class="digest-title"><a href="https://coinmarketcap.com/academy/article/visa-launches-ai-commerce-platform-for-agentic-payments" target="_blank" rel="noopener">Visa launches AI commerce platform for agentic payments</a></span><span class="digest-src">CoinMarketCap</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 10</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOLUlzdjRyRWh4d19xcGgxZEtGZVRKeHlqU2JxMDhTQll5eml2RjlZQWdybTdOR0hfMTZ6ZEpCMVg3cThLWTFKZnNDbUhSOWNqRmN4b1BFc0Yydi1LR2NVd1FwYjh4VjdkTndjME1oV3M1M3lFdzVqSGdHM05Fenpra1hKenZWZDZKSEtiMFJPOXNEdGZ3YXZWdGhmb3FITXdDZ0JxWGVSV0d2bHhkSXhzTk5wMXFPMy1lWnc?oc=5" target="_blank" rel="noopener">Brand-new agentic commerce feature from Google - checking local stock</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 9</span><span class="tag tag-commerce">Commerce</span><span class="digest-title"><a href="https://www.digitalcommerce360.com/2026/07/09/how-salesforce-is-positioning-itself-in-the-agentic-ai-landscape/" target="_blank" rel="noopener">How Salesforce is positioning itself in the agentic AI landscape</a></span><span class="digest-src">Digital Commerce 360</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 8</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOWVV2OS1NWDZ6VmhHTmU3dVNLd3ZheTR2Z0MxNXBnbGdheWk0VGc3YkR1Wk80QVpiZ1dkamc5RVowTmpsN3VXUERsUVcxYTBLX3BsUkI5NWNHVmZ4YldpN2hHVDhvUXZXM0o1N2dhVjhJWnp6NGlIcTAtRUkyNWFMTFhiNnJrZkFDZDFHUjREekNwYUhqbWFpNlBNU3NXUUFieGlPTmtzR2k?oc=5" target="_blank" rel="noopener">Part IIB: what's next in agentic commerce optimization</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jul 8</span><span class="tag tag-linkedin">LinkedIn</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxNWTRLa29BX09tU3QyMEtyZGY5Rk1rbjBWM0dnX01GNk1HZzFKdlB2VDFWemVWMnFyaGVGamJyYlktRWNnblNWLTFwR1M4RlFNd1M4aERDZmttUlktazFJREFvNGtLZ2ZfTXZ1R0JTLTJIUUxXVzJrQkR6bFVEMkl6YlJDTUfSAYoBQVVfeXFMUFQzdUFJWm51cGRfWFNSRTRjYW5hSHRadU1FVTRPS2ozbkFjQTdjSVR2UER1MVY0Yy1BZUpvbW5ZRzdhQjFuS0hKLWtrd2RIOHRFNUlaSHRPNkZ2dzlNZkd5UFFvNXo2TkozNWIwLXZmV0VkSWN4TGJMcTRHTXJWR0tnNDMyeVlDSlhR?oc=5" target="_blank" rel="noopener">Joining the Agentic Commerce Forum with WPP Enterprise Solutions</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+        <div class="digest-row"><span class="digest-date">Jun 29</span><span class="tag tag-protocole">Protocol</span><span class="digest-title"><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQdV9GM2VOMGNPdWpJSHRGTVBFeU1wUUJVMHdRRGhmbGJtUVlfQVRTZXNjX1NLT1BPRVNRRlNmLURvbmVXeW1pWnp5aEJwWUxEdnJlQnQ1aUxTaVhvZFpaY2FmSFQ1MXFITEJMWnE0Sk00MTJ1ZVZxd3hLblAwUHZabVVhalZ3bnlaU1FxekIyamtaY0NPZjRMalg1cjExeHhDYUx0YTlIX3JvWjU4NnJQck5Nc3phTG9yQ2c?oc=5" target="_blank" rel="noopener">Monad Foundation joins the x402 Foundation</a></span><span class="digest-src">LinkedIn (via Google News)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-network" data-page="network">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Network, Infra &amp; PSP</h1>
+      <p class="subtitle">Card networks, PSPs and rails moving from pilots to live agentic transactions.</p>
+    </section>
+    <div class="block">
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Visa</span><span class="card-date">Jun 10, 2026</span></div>
+          <h3><a href="https://www.pymnts.com/news/b2b-payments/2026/adyen-debuts-agentic-solutions-for-enterprise-merchants/" target="_blank" rel="noopener">Agent Score, Agentic Registry and a Large Transaction Model</a></h3>
+          <p>Unveiled at Visa Payments Forum 2026 under Visa Intelligent Commerce, alongside new stablecoin and token capabilities.</p>
+          <div class="src">PYMNTS</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Visa</span><span class="card-date">Jul 2, 2026</span></div>
+          <h3><a href="https://www.bbva.com/en/innovation/bbva-completes-its-first-ai-agent-initiated-transaction-together-with-visa/" target="_blank" rel="noopener">BBVA completes its first AI agent-initiated transaction with Visa</a></h3>
+          <p>A live production transaction initiated entirely by an AI agent, settled on Visa rails - one of the first bank-side confirmations of the flow, not just a network demo.</p>
+          <div class="src">BBVA</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Mastercard</span><span class="card-date">Jul 2, 2026</span></div>
+          <h3><a href="https://www.mastercard.com/news/europe/en/newsroom/press-releases/en/2026/worldline-ing-and-mastercard-complete-a-live-end-to-end-european-agentic-payment-in-production/" target="_blank" rel="noopener">Worldline, ING and Mastercard complete a live European agentic payment</a></h3>
+          <p>End-to-end, in production - the European equivalent of the BBVA/Visa milestone, on Mastercard rails.</p>
+          <div class="src">Mastercard newsroom</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">PSP</span><span class="card-date">Jul 2026</span></div>
+          <h3><a href="https://www.prnewswire.com/news-releases/nuvei-completes-first-party-in-agent-payment-with-visa-unveils-merchant-led-agentic-payments-strategy-302816873.html" target="_blank" rel="noopener">Nuvei completes a merchant-led agentic payment with Visa</a></h3>
+          <p>Getting issuers to approve a purchase made by an AI agent and settling it on live Visa rails - a merchant/PSP-initiated flow rather than a bank pilot.</p>
+          <div class="src">PR Newswire</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Issuing</span><span class="card-date">Jul 15, 2026</span></div>
+          <h3><a href="https://fintech.global/2026/07/15/visa-and-thredd-move-closer-to-the-age-of-agentic-commerce/" target="_blank" rel="noopener">Thredd joins the Visa Agentic Ready Programme, starting with Zilch</a></h3>
+          <p>Brings agent-network readiness to card issuers across Europe - the issuing-side plumbing that has to exist before agentic checkout works end to end.</p>
+          <div class="src">FinTech Global</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Stablecoins</span><span class="card-date">Jul 16, 2026</span></div>
+          <h3><a href="https://www.theblock.co/post/agentic-commerce-stablecoins" target="_blank" rel="noopener">Visa: stablecoins will power micro-commerce in the AI agentic economy</a></h3>
+          <p>Positions stablecoin rails as the settlement layer for the sub-cent, high-frequency payments that card rails were never built to clear economically.</p>
+          <div class="src">The Block</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Standards body</span><span class="card-date">Jul 15, 2026</span></div>
+          <h3><a href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">Ripple joins Visa and Mastercard in backing x402</a></h3>
+          <p>A crypto-native rail (Ripple) sitting inside the same standards body as the two largest card networks - a sign x402 is being treated as infrastructure, not a niche crypto experiment.</p>
+          <div class="src">CoinDesk</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-reseau">Identity</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.experianplc.com/newsroom/press-releases/2026/experian-announces-agent-trust-to-power-trusted-ai-driven-commer" target="_blank" rel="noopener">Experian Agent Trust</a></h3>
+          <p>A framework establishing a secure, verifiable link between a consumer and the agents acting for them, built within an ecosystem that includes Visa, Cloudflare and Skyfire.</p>
+          <div class="src">Experian</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-commerce" data-page="commerce">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Commerce</h1>
+      <p class="subtitle">Where agentic checkout is actually shipping - platforms, merchants and marketplaces.</p>
+    </section>
+    <div class="block">
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Platform</span><span class="card-date">Jul 20, 2026</span></div>
+          <h3><a href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">Square opens free ChatGPT/Claude ordering to US restaurants</a></h3>
+          <p>No marketplace commission, versus the 15–30% delivery apps typically charge - a direct bid to make agent-originated orders cheaper for merchants than the existing delivery stack.</p>
+          <div class="src">Digital Transactions</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Marketplace</span><span class="card-date">Jul 21, 2026</span></div>
+          <h3><a href="https://www.searchenginejournal.com/70-of-top-retailers-are-invisible-to-agentic-commerce-heres-why/" target="_blank" rel="noopener">70% of top retailers are invisible to agentic commerce</a></h3>
+          <p>Most retail catalogs and product feeds still aren't structured in a way shopping agents can parse reliably - a discoverability gap, not a payments gap.</p>
+          <div class="src">Search Engine Journal</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Platform</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.mastercard.com/us/en/news-and-trends/stories/2026/agentic-commerce-rules-of-the-road.html" target="_blank" rel="noopener">Adyen Agentic - the "universal translator" for agent checkout</a></h3>
+          <p>Positions itself as an integration layer letting merchants plug into whichever protocol (ACP, UCP, AP2, x402) a given shopping agent speaks, rather than betting on one.</p>
+          <div class="src">Mastercard / industry coverage</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">CRM/Commerce</span><span class="card-date">Jul 9, 2026</span></div>
+          <h3><a href="https://www.digitalcommerce360.com/2026/07/09/how-salesforce-is-positioning-itself-in-the-agentic-ai-landscape/" target="_blank" rel="noopener">How Salesforce is positioning itself in the agentic AI landscape</a></h3>
+          <p>Agentforce Commerce ties order orchestration directly to the CRM layer, competing for the merchant-side integration surface that Adyen and Shopify are also chasing.</p>
+          <div class="src">Digital Commerce 360</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Marketplace</span><span class="card-date">2026</span></div>
+          <h3><a href="https://openai.com/index/buy-it-in-chatgpt/" target="_blank" rel="noopener">Instant Checkout in ChatGPT</a></h3>
+          <p>OpenAI's own commerce surface, built on the Agentic Commerce Protocol co-developed with Stripe - the reference implementation most other ACP integrations are measured against.</p>
+          <div class="src">OpenAI</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Advertising</span><span class="card-date">Jul 14, 2026</span></div>
+          <h3><a href="https://www.searchenginejournal.com/surviving-the-impression-squeeze-how-agentic-commerce-is-changing-google-ads-in-2026/" target="_blank" rel="noopener">How agentic commerce is changing Google Ads in 2026</a></h3>
+          <p>Agent-mediated shopping compresses the funnel between impression and purchase, squeezing the ad formats built around a human scrolling and clicking.</p>
+          <div class="src">Search Engine Journal</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Shopping UX</span><span class="card-date">May 19, 2026</span></div>
+          <h3><a href="https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/" target="_blank" rel="noopener">Universal Cart - Google's AI-powered shopping hub</a></h3>
+          <p>Lets shoppers add products from Search, Gemini, YouTube and Gmail into one persistent cart with deal tracking, alongside the AP2 update enabling autonomous purchases.</p>
+          <div class="src">blog.google</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Platform</span><span class="card-date">May 2026</span></div>
+          <h3><a href="https://www.geekwire.com/2026/amazon-offers-its-ai-shopping-tech-to-outside-retailers-in-new-phase-of-agentic-commerce-race/" target="_blank" rel="noopener">Amazon retires Rufus, ships Alexa for Shopping and sells the tech to other retailers</a></h3>
+          <p>Rufus is folded into Alexa for Shopping (still discovery, not full checkout, so far). Separately, AWS packaged the underlying tech as the Agentic Shopping Assistant so outside retailers can deploy it in about 60 days, Tapestry's Kate Spade Gift Concierge is the first outside production use.</p>
+          <div class="src">GeekWire</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Payments</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.paypal.ai/" target="_blank" rel="noopener">PayPal's Agent Ready rolls out to its merchant base</a></h3>
+          <p>Built on the open-source PayPal Agent Toolkit, the PYUSD stablecoin (up roughly 680% year over year to $3.51B market cap by April 2026) and AP2 participation, Agent Ready lets PayPal's ~35 million merchants accept AI-agent-initiated payments without a separate integration.</p>
+          <div class="src">paypal.ai</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">Platform</span><span class="card-date">Jun 9, 2026</span></div>
+          <h3><a href="https://www.forbes.com/sites/johnkoetsier/2026/06/09/apple-siri-ai-agent-features/" target="_blank" rel="noopener">Apple's WWDC 2026 Siri rebuild adds agentic task execution</a></h3>
+          <p>The Gemini-powered Siri overhaul lets third-party developers build agents that complete multi-step tasks across apps. Commerce implications are still mostly contained to Wallet features (camera-based bill splitting) rather than open checkout, Apple is visibly more cautious here than Google, OpenAI or Amazon.</p>
+          <div class="src">Forbes</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-commerce">BNPL</span><span class="card-date">May 20, 2026</span></div>
+          <h3><a href="https://www.digitalcommerce360.com/2026/05/20/klarna-ai-shopping-search-app-openai-chatgpt/" target="_blank" rel="noopener">Klarna launches AI shopping search inside ChatGPT</a></h3>
+          <p>An MCP server connects ChatGPT to Klarna's catalog of 100M+ products across 400M listings. Klarna is now present across all three major commerce standards at once: its own Agentic Product Protocol, Google's UCP (joined Feb 2026), and Stripe's Shared Payment Tokens (Mar 2026), a hedge against any one protocol winning outright.</p>
+          <div class="src">Digital Commerce 360</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-market" data-page="market">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Market &amp; Funding</h1>
+      <p class="subtitle">Sizing the opportunity, and who's funding the infrastructure underneath it. Forecasts vary 10x depending on definition - read the methodology, not just the headline number.</p>
+    </section>
+    <div class="block">
+      <div class="block-note">The wide spread below is real, not a sourcing error: near-term market-sizing (Grand View, Juniper) counts today's narrow agentic-checkout tooling market; the trillion-dollar forecasts (McKinsey, Gartner, Bain, Morgan Stanley) count total commerce volume that flows through an agent at any step, by 2028–2030.</div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Market sizing</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.grandviewresearch.com/industry-analysis/agentic-commerce-market-report" target="_blank" rel="noopener">$7.7B (2026) → $65.5B (2033), 35.7% CAGR</a></h3>
+          <p>Grand View Research's near-term sizing of the agentic-commerce tooling market specifically - not total commerce influenced by agents.</p>
+          <div class="src">Grand View Research</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Forecast</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants" target="_blank" rel="noopener">Up to $1T US retail revenue by 2030, $3–5T globally</a></h3>
+          <p>McKinsey's broader definition - orchestrated commerce, not just checkout tooling revenue.</p>
+          <div class="src">McKinsey QuantumBlack</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Forecast</span><span class="card-date">2026</span></div>
+          <h3><a href="https://www.forrester.com/blogs/agentic-payments-in-b2c-commerce-where-we-are-now/" target="_blank" rel="noopener">Gartner: 90% of B2B buying via AI agents by 2028, &gt;$15T</a></h3>
+          <p>B2B procurement, not consumer checkout - the largest of the widely-cited forecasts, and the hardest to independently verify this early.</p>
+          <div class="src">Forrester (citing Gartner)</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Funding</span><span class="card-date">Jul 20, 2026</span></div>
+          <h3><a href="https://techcrunch.com/2026/07/20/natural-raises-30m-to-reinvent-payments-for-ai-agents-and-take-on-stripe/" target="_blank" rel="noopener">Natural raises $30M to reinvent payments for AI agents</a></h3>
+          <p>Positions directly against Stripe's agentic commerce suite - infrastructure-layer competition intensifying alongside the network-level standards fight.</p>
+          <div class="src">TechCrunch</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Funding</span><span class="card-date">Jun 26, 2026</span></div>
+          <h3><a href="https://e27.co/airwallex-doubles-down-on-agentic-commerce-with-us320m-funding-round-20260626/" target="_blank" rel="noopener">Airwallex doubles down on agentic commerce with $320M round</a></h3>
+          <p>One of the largest single funding events tagged to agentic commerce infrastructure so far this year.</p>
+          <div class="src">e27</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Funding</span><span class="card-date">Jun 8, 2026</span></div>
+          <h3><a href="https://www.techtimes.com/articles/318028/20260608/perplexity-raises-200-million-comet-ai-browser-agent-economy-front-door.htm" target="_blank" rel="noopener">Perplexity raises $200M for Comet, its AI browser</a></h3>
+          <p>Framed explicitly as building the "front door" to the agent economy - browser-level agent commerce rather than a checkout API.</p>
+          <div class="src">Tech Times</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Standards</span><span class="card-date">Jul 14, 2026</span></div>
+          <h3><a href="https://www.tftc.io/x402-foundation-operational-launch-ai-agent-payments" target="_blank" rel="noopener">40-member x402 Foundation goes operational</a></h3>
+          <p>Not funding in the venture sense, but a strong signal of where incumbent capital is consolidating: Visa, Mastercard, Amex, Stripe, Google, AWS, Shopify, Cloudflare, Coinbase.</p>
+          <div class="src">Linux Foundation</div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="tag tag-marche">Retail impact</span><span class="card-date">Jun 2026</span></div>
+          <h3><a href="https://www.eurocommerce.eu/2026/06/european-retailers-face-a-e240-320-billion-ai-opportunity-as-agentic-commerce-reshapes-the-industry/" target="_blank" rel="noopener">European retailers face a €240–320B AI opportunity</a></h3>
+          <p>A regional sizing that's easy to miss inside US-centric coverage - useful counterweight when briefing European stakeholders.</p>
+          <div class="src">EuroCommerce</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-research" data-page="research">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Research</h1>
+      <p class="subtitle">Academic and institutional research on agentic commerce and payments, from arXiv, SSRN and major institutions.</p>
+    </section>
+    <div class="block">
+
+      <div class="subhead">arXiv - 11 papers</div>
+      <div class="paper-list">
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2607.12575" target="_blank" rel="noopener">How Agentic Is Agentic Commerce? (x402 adoption measurement)</a></div>
+          <div class="pmeta">arXiv 2607.12575 · Jul 14, 2026</div>
+          <div class="pnote">Population-scale measurement of x402 on Base: 136.7M settlements, but 85% fabricated or internal to a single cluster. The headline transaction counter measures manufacturability, not real adoption.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2606.25876" target="_blank" rel="noopener">The Web4 Agent Economy</a></div>
+          <div class="pmeta">arXiv 2606.25876 · Jun 24, 2026</div>
+          <div class="pnote">Large-scale empirical study of the protocol landscape (MCP, x402, ERC-8004) that lets agents hold a crypto wallet, execute on-chain transactions, and pay for external API calls.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/pdf/2606.26028" target="_blank" rel="noopener">Can Trustless Agents Be Trusted? An Empirical Study of ERC-8004</a></div>
+          <div class="pmeta">arXiv 2606.26028 · Jun 2026</div>
+          <div class="pnote">Empirical audit of the decentralized ERC-8004 "Trustless Agents" ecosystem - tests whether the registry actually delivers the trust guarantees it advertises.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2607.00245" target="_blank" rel="noopener">Agent-to-Agent Finance: Blockchain Payments and Trust Infrastructure for Autonomous AI Agents</a></div>
+          <div class="pmeta">arXiv 2607.00245 · Jul 1, 2026</div>
+          <div class="pnote">Surveys how AP2, x402 and ERC-8004 combine to let autonomous agents negotiate, pay and manage digital assets without human sign-off at each step.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/pdf/2605.30998" target="_blank" rel="noopener">Free-Riding the Agentic Web: A Systematic Security Analysis of x402 Payments</a></div>
+          <div class="pmeta">arXiv 2605.30998 · May 2026</div>
+          <div class="pnote">Catalogs exploit paths that let an agent consume a paid API without actually settling payment - directly relevant to anyone treating x402 receipts as proof of service delivery.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2604.15367" target="_blank" rel="noopener">SoK: Security of Autonomous LLM Agents in Agentic Commerce</a></div>
+          <div class="pmeta">arXiv 2604.15367 · Apr 2026</div>
+          <div class="pnote">Systematization-of-knowledge threat model spanning MCP, A2A, Agora and ANP - the closest thing to a shared vocabulary for "what can go wrong" across the whole protocol stack.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/pdf/2604.03733" target="_blank" rel="noopener">SoK: Blockchain Agent-to-Agent Payments</a></div>
+          <div class="pmeta">arXiv 2604.03733 · Apr 2026</div>
+          <div class="pnote">Companion systematization focused specifically on the blockchain-settled leg of agent-to-agent commerce.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2602.00213" target="_blank" rel="noopener">TessPay: Verify-then-Pay Infrastructure for Trusted Agentic Commerce</a></div>
+          <div class="pmeta">arXiv 2602.00213 · Feb 2026</div>
+          <div class="pnote">Escrow-based design: funds lock until cryptographic proof of task execution exists, and release only after independent verification - a concrete implementation of the "verify before you pay" pattern FACT and ATLAS also target.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2606.08790" target="_blank" rel="noopener">RAILS: Verification-Native Clearing for Agentic Commerce</a></div>
+          <div class="pmeta">arXiv 2606.08790 · Jun 2026</div>
+          <div class="pnote">Argues MCP, A2A, x402, AP2 and the Visa/Mastercard networks all assume a neutral mechanism decides whether an agent fulfilled its mandate - but none actually provides one. Directly echoes the problem trust layers like FACT and ATLAS are built to solve.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2606.24783" target="_blank" rel="noopener">Paying to Know: Micro-Transaction Markets for Verified Product Information in Agentic E-Commerce</a></div>
+          <div class="pmeta">arXiv 2606.24783 · Jun 2026</div>
+          <div class="pnote">Proposes a micropayment market for verified product data itself - a shopping agent pays a small fee to confirm a listing is accurate before it transacts on it.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://arxiv.org/abs/2606.10064" target="_blank" rel="noopener">Distilling a Shopping Agent from Arena Traces</a></div>
+          <div class="pmeta">arXiv 2606.10064 · Jun 8, 2026</div>
+          <div class="pnote">Uses traces from a Bittensor "arena" (ShoppingBench) to train small agentic shopping models, addressing the shortage of reliable, unbiased training trajectories for this task.</div>
+        </div>
+      </div>
+
+      <div class="subhead">SSRN - 8 papers</div>
+      <div class="paper-list">
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6111766" target="_blank" rel="noopener">AGENTIC COMMERCE: A Theory of Markets When the Shopper Is No Longer Human</a></div>
+          <div class="pmeta">SSRN 6111766 · Paul F. Accornero</div>
+          <div class="pnote">First comprehensive theoretical architecture for agentic commerce as a distinct market structure, framed against the $3–5T 2030 transformation estimate.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6647518" target="_blank" rel="noopener">Agentic Payments: When Is a Payment (Un)Authorised?</a></div>
+          <div class="pmeta">SSRN 6647518 · Nydia Remolina</div>
+          <div class="pnote">Proposes a "bounded delegated authorisation" legal test and a new regulatory category - Digital Assistant Payment Services (DAPS) - to keep accountability intact once agents optimize within, but beyond, a user's literal instructions.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5381574" target="_blank" rel="noopener">What Is Your AI Agent Buying? Evaluation, Biases, Model Dependence &amp; Emerging Implications for Agentic E-Commerce</a></div>
+          <div class="pmeta">SSRN 5381574 · Allouah, Besbes, Figueroa, Kanoria, Kumar</div>
+          <div class="pnote">Finds agentic markets are volatile and structurally different from human-driven ones, with systematic model-dependent purchasing biases - an argument for continuous auditing, not one-off certification.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6717618" target="_blank" rel="noopener">Agentic AI in Procurement Software: A Neutral Market Whitepaper</a></div>
+          <div class="pmeta">SSRN 6717618 · Praneeth Daripalli</div>
+          <div class="pnote">Vendor-neutral survey of what "agentic" actually means across enterprise procurement tools - useful as a check against marketing claims.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://ssrn.com/abstract=5709083" target="_blank" rel="noopener">The Trust Paradox in AI-Mediated Commerce: A Conceptual Framework and Research Agenda</a></div>
+          <div class="pmeta">SSRN 5709083 · Paul F. Accornero</div>
+          <div class="pnote">Sets out the research agenda underneath the trust-layer problem that FACT, ATLAS, Verifiable Intent and Experian Agent Trust are each attacking from a different angle.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5511758" target="_blank" rel="noopener">From SEO to AIO: Agent Intent Optimization in the Age of Algorithmic Shoppers</a></div>
+          <div class="pmeta">SSRN 5511758 · Paul F. Accornero (working paper)</div>
+          <div class="pnote">Treats "getting found by shopping agents" as a discipline distinct from SEO - relevant background for the "70% of retailers are invisible to agentic commerce" story on the Commerce page.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://ssrn.com/abstract=5705703" target="_blank" rel="noopener">AI Shopping Agents Are Psychologically American: Evidence of WEIRD Bias in LLMs and Implications for Global Commerce</a></div>
+          <div class="pmeta">SSRN 5705703 · Paul F. Accornero</div>
+          <div class="pnote">Documents a Western-centric bias in how shopping agents weigh preferences - a caution for anyone assuming agent behavior generalizes cleanly across markets.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6600538" target="_blank" rel="noopener">The Autonomous Agentic Store: A Constitutional AI Framework for Fully Staffless Physical Retail</a></div>
+          <div class="pmeta">SSRN 6600538 · Sudhir Vissa</div>
+          <div class="pnote">Extends agentic commerce from software checkout into staffless physical retail - a governance framework rather than a payments spec.</div>
+        </div>
+      </div>
+
+      <div class="subhead">Institutional &amp; market research - 4 publications</div>
+      <div class="paper-list">
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://www.imf.org/en/publications/imf-notes/issues/2026/04/22/how-agentic-ai-will-reshape-payments-575560" target="_blank" rel="noopener">How Agentic AI Will Reshape Payments</a></div>
+          <div class="pmeta">IMF Notes 2026/004 · Sonja Davidovic &amp; Hervé Tourpe · Apr 22, 2026</div>
+          <div class="pnote">Central tension: payment systems are built on deterministic logic, agentic AI operates probabilistically. Flags KYC/authentication gaps and warns that correlated agent behaviour could synchronise payment flows and strain intraday settlement capacity.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants" target="_blank" rel="noopener">The Agentic Commerce Opportunity</a></div>
+          <div class="pmeta">McKinsey QuantumBlack · 2026</div>
+          <div class="pnote">Source of the widely-cited $1T US / $3–5T global 2030 estimate used across the Market page.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://www.forrester.com/blogs/agentic-payments-in-b2c-commerce-where-we-are-now/" target="_blank" rel="noopener">Agentic Payments in B2C Commerce: Where We Are Now</a></div>
+          <div class="pmeta">Forrester · 2026</div>
+          <div class="pnote">Practitioner-facing status check on B2C agentic payments, cited here for the Gartner B2B forecast it references.</div>
+        </div>
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://www.grandviewresearch.com/industry-analysis/agentic-commerce-market-report" target="_blank" rel="noopener">Agentic Commerce Market Size &amp; Share Report, 2026–2033</a></div>
+          <div class="pmeta">Grand View Research · 2026</div>
+          <div class="pnote">Source of the $7.7B → $65.5B near-term market-sizing figure used on the Home and Market pages.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-linkedin" data-page="linkedin">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">LinkedIn</h1>
+      <p class="subtitle">What practitioners are actually saying about agentic commerce, refreshed daily.</p>
+    </section>
+    <div class="block">
+      <div class="grid">
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">HSBC Corporate &amp; Institutional Banking</span></div>
+          <h3><a href="https://www.linkedin.com/posts/hsbc-corporate-and-institutional-banking_hsbc-mastercard-pilot-agentic-b2b-payments-activity-7476122132540891136-GBo1" target="_blank" rel="noopener">A B2B agentic pilot with Mastercard in Singapore</a></h3>
+          <p>First live transaction on May 29, 2026: a buying platform (SourceSage) and an e-commerce supplier (FortyTwo) transact end-to-end via an agent, on Mastercard rails.</p>
+          <div class="src">LinkedIn</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jitto Arulampalam</span></div>
+          <h3><a href="https://www.linkedin.com/posts/jittoarulampalam_looking-forwarded-to-making-b2b-agentic-payments-activity-7461982215938134016-aiuA" target="_blank" rel="noopener">Reaction to the HSBC × Mastercard pilot</a></h3>
+          <p>Enthusiasm about B2B agentic payments becoming real, in direct response to the Singapore pilot above.</p>
+          <div class="src">LinkedIn</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Simon Taylor</span></div>
+          <h3><a href="https://www.linkedin.com/posts/sytaylor_agentic-payments-has-at-least-10-different-activity-7453065656788307968-cLrM" target="_blank" rel="noopener">At least ten competing protocols</a></h3>
+          <p>A tally of agentic-payment protocols already in circulation - a fragmented market, consistent with the x402 Foundation's attempt to consolidate part of it.</p>
+          <div class="src">LinkedIn</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 21, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNemFfQUxQeVdqWlo1bkNZaVMydy0ySUsyNFVIb0J3eUFDWnRWOGprdENvcHdpQmM3b0d4MmFuZkhQSXUzQ2d5TkZZZEc5YVMtbVZDYWNVVlNBeUMybFFoN0hhcjdwN0dKMTRfZUpVcGZRRnZwRHU3Qy1TMjFjWDhNTERzTjdEOWhiN2U3SmYzMEljOU1BUDgxZUlrS0daakh3R2JsZ2l4VlVqcEVZemxzSnVZMVhVRVg3OVU2S2Rn?oc=5" target="_blank" rel="noopener">Beyond Keywords: how agentic commerce search understands true shopper intent</a></h3>
+          <p>Argues ranking for shopping agents requires modeling intent, not matching keywords - the practitioner-side echo of the discoverability gap flagged by Search Engine Journal this week.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 21, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxPbFF2c2VlMnlXcHRzdEhkVXR3em9rNU9xYWRDQ0FlVFN1QlNwRWlvaTRETGRjdTZqVWotV0VOcVVlU1ZSZ2tkdUVyd1k0YWl5QVhLdTl0aHpzLUo2YTlyOWhUNUxqYTJHUnVRRFdDaUd5UVlqVmV4OFBQOTBYVzRiQWQwNUVKRlpmd21EbENVSE5nN3dJY1JPRmpVSnhRQlVfUEYxYl9kVE9UeHJkVHczZGZpb1NLbFdmZ0tKQ25oWlNGeUZ1V2hVYmhHWDM?oc=5" target="_blank" rel="noopener">Talking agentic commerce, stablecoins and legal frameworks at CTA</a></h3>
+          <p>A conference wrap-up connecting stablecoin settlement, agentic commerce and the legal frameworks needed to let innovation scale - the same convergence driving the x402/Visa/Ripple story this fortnight.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 17, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQYTJPVGV4czlzQ2thNThCZ19xR0JmbHdwSDQwemFOQURSUVlRVU9RZjl3SXZ0bkZOMGdEMVgyZlBBSTd6d2MzM0tWU01FNVBERzlUOTc3Vi1xNF85YnpkYmJsT3ZEMURMY0pxY2tSRlRlLWhtZ19EN19OaG9YWmZaLVVIS255QlNSdDB1M0tiWWRoM212ZXVqd1BING5xMlJWcDlqclVaSV94ZDVrT1B6WlZCS29YTmpwTE93aVJ4MFJ1TGNFWUdwbkdR?oc=5" target="_blank" rel="noopener">"Everyone is talking about Agentic Commerce" - a year embedded across agencies</a></h3>
+          <p>A practitioner's field notes after a year spent across agencies, brands and platforms - skeptical of the hype cycle, specific about what's actually shipping.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 16, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxONlFXZkM2ZC03STZlZUhoY1o1bjBfZlZXMXEwQmdERHdiMTZ3QXZ5MlIyb3F2ZDJqV3AtNF8xUzZpd3BVUnlpUVJKc19KZEJubmI5VTZ6a3JSRHZGS1NOdk9JRm9TMHVfemNKdG1Qdi1pRTVjaVJ1Yk5mWTRIX1NDdi1UeUM3TmRWVUVWb3lzZw?oc=5" target="_blank" rel="noopener">The Missing Half of Agentic Commerce (Part 1 of 3)</a></h3>
+          <p>First of a three-part series - worth tracking for parts two and three as they publish.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 14, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPcTl4NDdndnRKNHdoM0FEc21OVnB1MVo3U0pMZk4taWV3dWV6MlBScXlUbTd0QTVNSU56ZEtVV2VWWXdjWTRZWFctTlpuLWNpTV9DNXZFN0JNdVNuQnRBTVZ2U2psOU5aT3RiQlpBUFpvVThlS0d6QzhjdnVYLXNUT0x0b213c1J1ZTFUQldTZ0VsSXFVN05NNlFObml4bGR6RmZoektRWXE3aEhEUnNxMzBlNjFBaWVB?oc=5" target="_blank" rel="noopener">"Agentic commerce is already here, and with it are questions of trust"</a></h3>
+          <p>Direct commentary on the trust gap - the same theme FACT and ATLAS are built to address.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 12, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZWdfTlBIdWlFM2F1R2hqVzJOTEJnM1ktYXNkMi1KcW5oajBjRzVHb0xmTlpfRzczU0xZTlBNYjZtdFFoNzBKanlxT0NUVVIzblhWcnhMdGdfNkdFcjhNenVWNzJDdWFGNldTQXduSWZ1MFBGb2FvbmxnRVkxa01JMWFCMFFKdTE3ZXhZQ3pTejY3c3N6WEhkZFZKZkJ2M002bnF3eDJkdEE?oc=5" target="_blank" rel="noopener">Agentic Commerce - Protocols: what I learned building a transaction simulator</a></h3>
+          <p>Hands-on notes from actually implementing against several of the competing protocols - a useful reality check against vendor documentation.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 10, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOLUlzdjRyRWh4d19xcGgxZEtGZVRKeHlqU2JxMDhTQll5eml2RjlZQWdybTdOR0hfMTZ6ZEpCMVg3cThLWTFKZnNDbUhSOWNqRmN4b1BFc0Yydi1LR2NVd1FwYjh4VjdkTndjME1oV3M1M3lFdzVqSGdHM05Fenpra1hKenZWZDZKSEtiMFJPOXNEdGZ3YXZWdGhmb3FITXdDZ0JxWGVSV0d2bHhkSXhzTk5wMXFPMy1lWnc?oc=5" target="_blank" rel="noopener">Brand-new agentic commerce feature from Google - checking local stock</a></h3>
+          <p>A first-hand account of using a Google agentic feature to check whether an item is in stock nearby while shopping for a chef's knife.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 8, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOWVV2OS1NWDZ6VmhHTmU3dVNLd3ZheTR2Z0MxNXBnbGdheWk0VGc3YkR1Wk80QVpiZ1dkamc5RVowTmpsN3VXUERsUVcxYTBLX3BsUkI5NWNHVmZ4YldpN2hHVDhvUXZXM0o1N2dhVjhJWnp6NGlIcTAtRUkyNWFMTFhiNnJrZkFDZDFHUjREekNwYUhqbWFpNlBNU3NXUUFieGlPTmtzR2k?oc=5" target="_blank" rel="noopener">Part IIB: what's next in agentic commerce optimization</a></h3>
+          <p>Continues a series on product-level context capture for agentic commerce optimization - technical, practitioner-focused.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 13, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxOWnRpVEVMT3dvX1ZXZHFndXYyUjJpSUxZNnY2TUVCRVZGYUxWU1E5MzI4ckNxY0kydGUzNXp4YmtQSFFJcWRGRXFZaWlUSWhwT21kYmJPaG9jOENwYUdmSEdnek1SYURlWU1DWjh0TXhSTGlCaEFjWWNfSFI4TmRZeGVOQ1ExNVowOUxlQkJUY0ZFWG91NEhRNDMxRVp3bkxhNVE0TFUwVU5rcG9IUUxSMlpuTDJTMFpSS1hBRnJDdw?oc=5" target="_blank" rel="noopener">Agentic commerce is coming to print and promo</a></h3>
+          <p>A niche-market view: 99% of businesses in that industry aren't close to ready, even as agentic buying spreads beyond the usual retail examples.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 5, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbHNzXzBPLUlmbFllc3FHUHJmZmpaaFk4RlZGdkEwVzdVTTdsVlV5NzhnWDQxNTdYakppMFlTS0Jjb1BZZ0FVT29JMXVSa0NsaXBQb0hsMVhaWEw3RU40ZFVuV2Nuc0VmT3V0Z1RfMHJEcTZadlNPaDlzR001SmhRbmx5dVl3Y3NWQ1NnVDNtVWh4azliYW1oblc5SlE1SXlpRURoZXN1bWtmNW9DNENnNHZBRXpJRExHM3Nr?oc=5" target="_blank" rel="noopener">"No Regret Moves for Agentic Commerce" - talk recap</a></h3>
+          <p>Notes from a talk given at the second AI in Retail Expert Group meetup - practical moves that make sense regardless of which protocol wins.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 3, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNUHVqcWNLUWxqMTYtS0NqQlB6SDZDMXViSGtkb1duR0tRNlVnajZwRnVvMFZTRXNiYmlvQXBwRDRmQWNVbkFqSTRPV1BIUTFyXzRENmpiNTZCR0hJNk1Pb3Z4WTZoY25JdldDbWFCLWE3UUIwQ0J6ajNMN1RObFQwTzFpVjBPYklhMVJETkUzbjYyMEZGZTVKV0x0SEVNcTF4ZG1yRHdyUWlEd2dSSG55V045a3prLWxy?oc=5" target="_blank" rel="noopener">Agentic commerce is a manufacturer problem too, not just a retail one</a></h3>
+          <p>Pushes back on framing agentic commerce as purely a consumer-behavior shift, arguing manufacturers and foodservice companies need to plan for it directly.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jun 22, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxNeS1XYmxCeW1NLWsyUlNjaGh2T2MyNC1mNk9DQklMRnNra1ZudFlOWlBtUE5PMGZfSlBOeXo0aV9IY0t1Skl6QllObXR5ckhJVHM3STgzTDduR1RYN1l5SzltMnhWRU95cTM3Ni16WW5jUnY0OFM4Y2g0QVRIZGVFV3Jha2dLWkNsVjl0NnFFdC1ENFF4T2JMVFRHVHdGb29nU2NhR09CQ3JoWDRzbDNuOWxGV2xUSGY0d0xKMjA5MjdqdGktbnNpMzA4eDNDZw?oc=5" target="_blank" rel="noopener">Pacvue launches Pacvue Prism, an agentic commerce grid</a></h3>
+          <p>A retail-media vendor's product launch announced directly on LinkedIn - worth watching as a signal of how fast vendor tooling is moving.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 21, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQYU5jSmptWXFrOUJ3eXNlbnhtV1g0NDNIaXZsZWV5alZ2TmYya3MzNE1mQy1VaVlDeURGMmdwWXUxTU1janphY1JBMlFCNWRpSi02TVBlal8wZlNQZDg4czE3djJ5MjlBcFdWX2hfUHAtMFJxRWxDUFZPdzRyYXFzaWVHTnZfSmotNzJZd1I3OUh6TnlUUVZhZTNKYkxVWmtXWFdGVkdCLWUwTUlmTjd0ejdFc3MxSWE4T0tZ?oc=5" target="_blank" rel="noopener">We traced 136 million x402 transactions on-chain</a></h3>
+          <p>A builder's own on-chain trace of what "agentic payment has arrived" actually looks like, a useful practitioner counterpoint to the arXiv paper questioning how much of that volume is genuine.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 21, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxNeGxDbWxwLWhTSVdqbTNLdlFTYmdMeEZFU1hvVnljb3h4UmhRX01vWFNUZTZRYVhJU3hISnRXSmpZbzE2Q3dQaTJ5REdFTGYzRXUwUmNSTkdJTnJmZU5pTmdUaU4wU2tLSFU0eWdCNW93eVVNbzc0MTM2Uy1IUEpWMDZpZ0N2dk9RdWFNX2ZsZF9XQQ?oc=5" target="_blank" rel="noopener">Agent Payments Protocol (AP2) in a nutshell</a></h3>
+          <p>A short video walkthrough of how Checkout and Payment Mandates actually work, a practical primer rather than a hot take.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jul 8, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxQb25LSHlmY1VVbUJ5RkFMVGtHOXg2Rk1zSmFDVk1wSGpZcW5QRFNhSDVzS0owclJwVW81am1wc3NQZDlkSFlGNXdnV2VDY2Jwa3pQVW9ZajNNd29BcnBQUnkzWS11UGtJR1lENXNjN0ZnQ21FdURtRml6bGhzN3RvMnZZMnFJRl9UUzF5eGRtSksxTXUxa1JoZ0Iwbmp3WGNFeU5hWnFVaDJoZkgxbi16Zg?oc=5" target="_blank" rel="noopener">We just 10x'd what agents can buy on x402</a></h3>
+          <p>A builder's progress update on expanding what's actually purchasable through the protocol, the practical, unglamorous side of adoption.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+        <article class="card li-card">
+          <div class="card-head"><span class="tag tag-linkedin">LinkedIn</span><span class="author">Jun 29, 2026</span></div>
+          <h3><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQdV9GM2VOMGNPdWpJSHRGTVBFeU1wUUJVMHdRRGhmbGJtUVlfQVRTZXNjX1NLT1BPRVNRRlNmLURvbmVXeW1pWnp5aEJwWUxEdnJlQnQ1aUxTaVhvZFpaY2FmSFQ1MXFITEJMWnE0Sk00MTJ1ZVZxd3hLblAwUHZabVVhalZ3bnlaU1FxekIyamtaY0NPZjRMalg1cjExeHhDYUx0YTlIX3JvWjU4NnJQck5Nc3phTG9yQ2c?oc=5" target="_blank" rel="noopener">Monad Foundation joins the x402 Foundation</a></h3>
+          <p>Another Layer-1 backing the standard, widening x402's base beyond its original Base/Coinbase roots.</p>
+          <div class="src">LinkedIn via Google News</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-protocols" data-page="protocols">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Protocols &amp; Standards</h1>
+      <p class="subtitle">The reference page for agentic commerce protocols: what's newly emerging, and direct links to the official specs of the standards that matter most. Unlike the rest of this site, the Major protocols list isn't limited to the last two months, it's meant to stay accurate as the field settles.</p>
+    </section>
+
+    <div class="block">
+      <div class="block-head"><h2>New on Protocols</h2><span class="count">new or significantly evolved in the last two months</span></div>
+      <div class="proto-list">
+        <div class="proto-row">
+          <span class="pname">x402 Foundation <span class="org">&middot; operational launch &middot; Jul 14, 2026</span></span>
+          <a class="plink" href="https://www.tftc.io/x402-foundation-operational-launch-ai-agent-payments" target="_blank" rel="noopener">TFTC &rarr;</a>
+          <p class="pdesc">The Linux Foundation declared x402 governance operationally live with 40 member organizations, moving it from a Coinbase project to industry-run infrastructure.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">A-Comm Evidence Protocol <span class="org">&middot; draft, open for comment &middot; Jul 20, 2026</span></span>
+          <a class="plink" href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">Digital Transactions &rarr;</a>
+          <p class="pdesc">A-Comm Technologies' draft standard for building an evidence record establishing the validity of AI-initiated consumer transactions, public comment period runs through Aug 14.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Mastercard Agent Pay for Machines (AP4M) <span class="org">&middot; launched &middot; Jun 2026</span></span>
+          <a class="plink" href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html" target="_blank" rel="noopener">Mastercard newsroom &rarr;</a>
+          <p class="pdesc">A new settlement layer under the Agent Pay umbrella built specifically for agent-to-agent microtransactions down to fractions of a cent.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Visa Agent Score, Agentic Registry &amp; Large Transaction Model <span class="org">&middot; announced &middot; Jun 10, 2026</span></span>
+          <a class="plink" href="https://www.pymnts.com/news/b2b-payments/2026/adyen-debuts-agentic-solutions-for-enterprise-merchants/" target="_blank" rel="noopener">PYMNTS &rarr;</a>
+          <p class="pdesc">Three new components under Visa Intelligent Commerce, unveiled at Visa Payments Forum 2026, aimed at unifying Trusted Agent Protocol with default AP2 compatibility.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Ripple joins the x402 standard <span class="org">&middot; Jul 15, 2026</span></span>
+          <a class="plink" href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">CoinDesk &rarr;</a>
+          <p class="pdesc">A crypto-native rail backing the same standard as Visa and Mastercard, widening x402's settlement options beyond USDC on Base.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Klarna Agentic Product Protocol <span class="org">&middot; 2026</span></span>
+          <a class="plink" href="https://www.klarna.com/international/press/introducing-klarnas-agentic-product-protocol/" target="_blank" rel="noopener">Klarna press &rarr;</a>
+          <p class="pdesc">Klarna's own product-level protocol for surfacing catalog data to shopping agents, run alongside (not instead of) UCP and Stripe's Shared Payment Tokens, a hedge against any single standard winning outright.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><h2>Major protocols</h2><span class="count">the ones to focus on, with a direct link to their official spec</span></div>
+      <div class="block-note">Every link below goes to the protocol owner's own documentation, GitHub repository or developer portal, not a third-party summary.</div>
+      <div class="proto-list">
+        <div class="proto-row">
+          <span class="pname">AP2 <span class="org">&middot; Agent Payments Protocol &middot; Google, donated to FIDO Alliance</span></span>
+          <a class="plink" href="https://ap2-protocol.org/specification/" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Cryptographically-signed "Mandates" for delegated, verifiable agent payments. Open extension of A2A and MCP.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">x402 <span class="org">&middot; Coinbase, governed by the x402 Foundation (Linux Foundation)</span></span>
+          <a class="plink" href="https://github.com/coinbase/x402/blob/main/specs/x402-specification-v2.md" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">HTTP-native micropayments reviving the dormant "402 Payment Required" status code, settled in stablecoins.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">ACP <span class="org">&middot; Agentic Commerce Protocol &middot; OpenAI &amp; Stripe</span></span>
+          <a class="plink" href="https://github.com/agentic-commerce-protocol/agentic-commerce-protocol" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Open standard connecting buyers, agents and businesses to complete purchases; powers Instant Checkout in ChatGPT.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">UCP <span class="org">&middot; Universal Commerce Protocol &middot; Google, Shopify + 20 partners</span></span>
+          <a class="plink" href="https://ucp.dev/" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Vendor-neutral standard modeling the full shopping journey (checkout, identity linking, order lifecycle), not just payment.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">MCP <span class="org">&middot; Model Context Protocol &middot; Anthropic, hosted by the Linux Foundation</span></span>
+          <a class="plink" href="https://modelcontextprotocol.io/specification/2025-06-18" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Standardizes how agents reach external tools, APIs and data. The plumbing most commerce protocols build on top of.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">A2A <span class="org">&middot; Agent2Agent Protocol &middot; Google, transferred to the Linux Foundation</span></span>
+          <a class="plink" href="https://a2a-protocol.org/latest/specification/" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">How independent agents discover each other, negotiate, and exchange tasks and results as peers.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">ERC-8004 <span class="org">&middot; Trustless Agents &middot; Ethereum</span></span>
+          <a class="plink" href="https://eips.ethereum.org/EIPS/eip-8004" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">On-chain Identity, Reputation and Validation registries letting agents check counterparties before transacting.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Visa Trusted Agent Protocol <span class="org">&middot; Visa</span></span>
+          <a class="plink" href="https://developer.visa.com/capabilities/trusted-agent-protocol/trusted-agent-protocol-specifications" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Cryptographically signed HTTP messages (RFC 9421) to recognize Visa-approved agents and validate their intent at checkout.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Mastercard Agent Pay <span class="org">&middot; Agentic Tokens &middot; Mastercard</span></span>
+          <a class="plink" href="https://developer.mastercard.com/merchant-cloud/documentation/tutorials-and-guides/agentic-commerce-guide/23/" target="_blank" rel="noopener">Specification &rarr;</a>
+          <p class="pdesc">Per-agent network tokens scoped to merchant, spend cap and time window, issued through the MDES token framework.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Verifiable Intent (VI) <span class="org">&middot; Mastercard &amp; Google, open-sourced</span></span>
+          <a class="plink" href="https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html" target="_blank" rel="noopener">Overview &amp; spec &rarr;</a>
+          <p class="pdesc">Tamper-resistant, selectively-disclosed proof of what a user authorized an agent to do, protocol-agnostic across AP2/UCP.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">FACT <span class="org">&middot; independent trust &amp; compliance layer &middot; Fime</span></span>
+          <a class="plink" href="#fact" onclick="location.hash='#fact';return false;">See the FACT page &rarr;</a>
+          <p class="pdesc">Not a payment protocol, a neutral trust layer sitting above all of the above: intent validation, continuous compliance monitoring, independent auditor agents.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= PERPLEXITY ================= -->
+<section class="page" id="page-perplexity" data-page="perplexity">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Perplexity check</h1>
+      <p class="subtitle">A second opinion. This site is built from targeted searches, not a full sweep, so this page is a standing cross-check: run these on Perplexity whenever you want to see if something got missed.</p>
+    </section>
+
+    <div class="block">
+      <div class="block-head"><h2>Run these searches</h2><span class="count">opens Perplexity with the query pre-filled</span></div>
+      <div class="proto-list">
+        <div class="proto-row">
+          <span class="pname">Agentic commerce news this week</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=agentic+commerce+news+this+week" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Latest on AP2, x402, ACP, UCP</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=latest+updates+AP2+x402+ACP+UCP+agentic+commerce+protocols" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Agentic payments, who else is moving</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=agentic+payments+which+companies+are+moving+2026" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Agentic commerce trust and identity layers, competitors to FACT and ATLAS</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=agentic+commerce+trust+layer+identity+verification+standards+competitors" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+        <div class="proto-row">
+          <span class="pname">New academic papers on agentic commerce and payments</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=new+arxiv+ssrn+papers+agentic+commerce+payments+trust" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Regulatory angle: EU AI Act, PSD3 and agentic payments</span>
+          <a class="plink" href="https://www.perplexity.ai/search?q=EU+AI+Act+PSD3+agentic+payments+regulation+2026" target="_blank" rel="noopener">Search &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><h2>Flagged by this check</h2><span class="count">gaps found and folded into the site on Jul 22, 2026</span></div>
+      <div class="block-note">Amazon (Alexa for Shopping, AWS Agentic Shopping Assistant), PayPal (Agent Ready, PYUSD), Apple (Siri AI agentic framework) and Klarna (Agentic Product Protocol) were missing and have now been added to Commerce and Protocols. The EU AI Act's Aug 2, 2026 full-application date is worth watching but isn't added as a card yet, it's regulatory context rather than a company or protocol move.</div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-fact" data-page="fact">
+  <div class="wrap" style="padding-top:28px;">
+    <div class="fact-hero">
+      <span class="spotlight-badge">Fime</span>
+      <span class="spotlight-badge alt">Consult Hyperion</span>
+      <span class="fdate">Launched April 21, 2026 - reference page, updated whenever there's news</span>
+      <h1>FACT - Framework for Agentic Commerce Trust</h1>
+      <p>Fime launches FACT, a neutral, independent trust layer between AI systems and payment rails: intent validation, continuous compliance monitoring, independent auditor agents, and transaction-by-transaction trust attestation. Unlike mechanisms built into a single network or platform, FACT stays interoperable and free of conflicts of interest.</p>
+      <blockquote>"We've built systems that let AI transact - we haven't yet built the systems that let us trust those transactions at scale."
+        <cite>Lionel Grosclaude, CEO of Fime</cite>
+      </blockquote>
+      <div class="fact-links">
+        <a href="https://www.fime.com/fr/blog/news-21/post/fime-launches-fact-the-first-trust-layer-for-agentic-commerce-684" target="_blank" rel="noopener">Full announcement - fime.com</a>
+        <a href="https://thepaypers.com/fraud-and-fincrime/news/fime-rolls-out-fact-trust-framework-for-ai-agent-initiated-payment-transactions" target="_blank" rel="noopener">Coverage - The Paypers</a>
+        <a href="https://www.biometricupdate.com/202604/fime-launches-agentic-commerce-trust-layer-service" target="_blank" rel="noopener">Coverage - Biometric Update</a>
+        <a href="https://ffnews.com/newsarticle/fime-launches-fact-the-first-trust-layer-for-agentic-commerce/" target="_blank" rel="noopener">Coverage - FFNews</a>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>FACT's four functions</h2>
+      <div class="fact-grid">
+        <div class="fact-tile"><span class="num">01</span><h4>Intent validation</h4><p>Checks that the action an agent proposes stays aligned with the intent expressed by the user or business.</p></div>
+        <div class="fact-tile"><span class="num">02</span><h4>Real-time compliance</h4><p>Continuous monitoring of agent behavior against defined rules and regulatory requirements.</p></div>
+        <div class="fact-tile"><span class="num">03</span><h4>Independent auditor agents</h4><p>Neutral third-party agents provide impartial trust verification, accredited by a certification body.</p></div>
+        <div class="fact-tile"><span class="num">04</span><h4>Transaction-by-transaction attestation</h4><p>A per-transaction trust signal usable for decisioning, auditability and traceability.</p></div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>What FACT adds on top of Verifiable Intent</h2>
+      <p>Verifiable Intent (VI), Mastercard/Google's cryptographic protocol, proves a transaction satisfies the formal constraints of a signed mandate - a precise, binary result, but blind to everything that happened before it. FACT continuously observes the agent's exchanges (prompts, tool calls, cart context) and compares them against the user's original intent: a transaction can be formally valid under VI while still resulting from a misread intent or a prompt injection.</p>
+      <div class="fact-compare">
+        <div>
+          <h4>Verifiable Intent</h4>
+          <p>Verifies the <strong>outcome</strong>: does the transaction respect the constraints the user signed (merchant, amount, items)?</p>
+        </div>
+        <div>
+          <h4>FACT</h4>
+          <p>Verifies the <strong>behavior</strong>: did the agent's reasoning stay faithful to the user's intent throughout the negotiation?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>Why an independent layer</h2>
+      <p>FACT is designed as a third-party layer, outside payment networks and agent platforms, so it can stay interoperable and neutral. That independence is what lets merchants, issuers and regulators accept the same trust signal regardless of which payment protocol runs upstream (AP2, ACP, UCP, x402...). It's also what distinguishes FACT from trust mechanisms built directly into a single network or platform, which can't offer the same neutrality.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-atlas" data-page="atlas">
+  <div class="wrap" style="padding-top:28px;">
+    <div class="fact-hero atlas-hero">
+      <span class="spotlight-badge alt">Hyperlab</span>
+      <span class="spotlight-badge">Fime</span>
+      <span class="fdate">Working draft, v0.1 - July 2026, not yet endorsed by an external standards body</span>
+      <h1>ATLAS - Agent Trust Layer and Assurance Standard</h1>
+      <p>A cryptographic protocol for independent assessment of autonomous AI agent behavior in commerce transactions. ATLAS standardizes how "Assessor" agents obtain encrypted evidence from subject agents, evaluate their compliance with policy, and produce verifiable trust signals for payment systems - developed by Fime/Consult Hyperion's Hyperlab as part of a Continuous Certification programme for agentic commerce.</p>
+      <div class="fact-links">
+        <a href="https://hyperlab-fime.github.io/ATLAS-PUBLIC/atlas-protocol-specification-0.1draft.html" target="_blank" rel="noopener">Full specification - hyperlab-fime.github.io</a>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>The problem: intent drift</h2>
+      <p>An AI agent's interpretation of user constraints - budget, allergens, preferences - can diverge from actual intent across the interpretation, structuring and filtering layers it passes through before acting. No standardized mechanism currently exists for independent, runtime verification of what an agent actually did during a transaction, which leaves gaps in liability allocation, fraud detection and regulatory compliance.</p>
+    </div>
+
+    <div class="fact-section">
+      <h2>Five linked artifacts</h2>
+      <div class="fact-grid">
+        <div class="fact-tile"><span class="num">Link 1</span><h4>Assessment delegation</h4><p>The subject agent delegates assessment of its own behavior.</p></div>
+        <div class="fact-tile"><span class="num">Link 2</span><h4>Sub-delegation</h4><p>The holder's sub-delegation, used in merchant / credential-provider mode only.</p></div>
+        <div class="fact-tile"><span class="num">Link 3</span><h4>Access assertion</h4><p>The Assessor's access assertion, carrying its own authorization credentials.</p></div>
+        <div class="fact-tile"><span class="num">Link 4</span><h4>Verdict</h4><p>The Assessor's verdict, with evidence hashes and a report token.</p></div>
+        <div class="fact-tile"><span class="num">Link 5</span><h4>Redemption token</h4><p>An opaque downstream token for payment rails, carrying no raw intent data.</p></div>
+      </div>
+      <p style="margin-top:14px;">Two operational patterns: <strong>holder mode</strong>, where a merchant or credential provider commissions the assessment, and <strong>direct mode</strong>, where the agent self-commissions it for compliance purposes.</p>
+    </div>
+
+    <div class="fact-section">
+      <h2>How it relates to AP2, Verifiable Intent and FACT</h2>
+      <p>ATLAS complements rather than replaces these - it adds a layer none of them currently provide.</p>
+      <div class="fact-compare">
+        <div>
+          <h4>AP2 / Verifiable Intent</h4>
+          <p>Secure <strong>mandate execution</strong>: does the transaction match the cryptographically signed constraints the user agreed to?</p>
+        </div>
+        <div>
+          <h4>ATLAS</h4>
+          <p>Secures <strong>runtime behavior</strong>: continuously monitors what the agent actually does versus what it claims to do, independent of the payment rail underneath.</p>
+        </div>
+      </div>
+      <p style="margin-top:14px;">Evidence stays encrypted (JWE) to Assessors only, using JWS/JWT capability tokens with RFC 7800 key binding (<code class="mono">cnf</code> claims) over TLS transport. Downstream payment systems only ever receive the compact opaque Link 5 token, never raw intent data - the same neutrality principle FACT applies to its own attestations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARCHIVE ================= -->
+<section class="page" id="page-archive" data-page="archive">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Archive</h1>
+      <p class="subtitle">A snapshot logged roughly every ten days, so you can see how the picture has shifted over time. This isn't a daily log, the rest of the site updates daily, this page doesn't.</p>
+    </section>
+    <div class="block">
+      <div class="paper-list">
+        <div class="paper-row">
+          <div class="ptitle"><a href="https://claude.ai/code/artifact/2c54ff13-c67b-456f-bb8f-ff85847e3d33" target="_blank" rel="noopener">July 22, 2026 &rarr;</a></div>
+          <div class="pmeta">First archived snapshot</div>
+          <div class="pnote">Full English rewrite from the original French version. Protocols reference page (Major protocols with official spec links, plus Emerging protocols from the last two months). Fime turquoise styling and brand band. Research expanded to arXiv + SSRN + institutional sources. LinkedIn signals sourced the same way as the underlying Make.com scenario. Persistent footer added. Daily 08:00 Paris-time refresh scheduled.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2>About this site</h2>
+    <p>This is a daily watch on agentic commerce and payments: the protocols, networks, research and public conversation shaping how AI agents discover, negotiate and pay. It's refreshed every morning so the picture stays current rather than going stale between reports.</p>
+    <p class="credit">Made by Noam C. &middot; agentic payment &amp; commerce strategic consultant</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages = document.querySelectorAll('.page');
+  var links = document.querySelectorAll('nav.pages a');
+  var valid = Array.prototype.map.call(pages, function(p){ return p.getAttribute('data-page'); });
+
+  function show(name){
+    if (valid.indexOf(name) === -1) name = 'home';
+    pages.forEach(function(p){
+      p.classList.toggle('active', p.getAttribute('data-page') === name);
+    });
+    links.forEach(function(l){
+      l.classList.toggle('active', l.getAttribute('data-page') === name);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function current(){
+    return (window.location.hash || '#home').replace('#','');
+  }
+
+  window.addEventListener('hashchange', function(){ show(current()); });
+  show(current());
+})();
+</script>
+
+</body>
+</html>
