@@ -402,6 +402,13 @@
   .actor-name{font-size:13px;font-weight:700;font-family:Georgia,serif;line-height:1.2;}
   .actor-role{font-size:11px;color:var(--ink-muted);margin-top:2px;line-height:1.3;}
 
+  /* ---------- "New since last edition" marker ---------- */
+  .badge-new{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--brand-coral);margin-left:6px;vertical-align:middle;
+    box-shadow:0 0 0 3px rgba(255,133,100,.22);
+  }
+
   /* ---------- Timeline page ---------- */
   .tl-filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px;}
   .tl-filter{
@@ -807,7 +814,7 @@
     </section>
     <div class="block">
       <div class="tl-filters">
-        <button class="tl-filter active" data-filter="all">All (27)</button>
+        <button class="tl-filter active" data-filter="all">All (28)</button>
         <button class="tl-filter" data-filter="protocol">Protocol</button>
         <button class="tl-filter" data-filter="network">Network</button>
         <button class="tl-filter" data-filter="commerce">Commerce</button>
@@ -1015,7 +1022,7 @@
           <div class="tl-node down" data-cat="crypto">
             <div class="tl-card" tabindex="0">
               <div class="tl-logo" style="background:#F0B90B;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAG1BMVEVHcEzwuQrxuAnwuQrxuQrwuQrwuQrwuQrwuQsQX4mNAAAACHRSTlMAeTrzcGZ+hBhuzVAAAALtSURBVHicxZtRgsIgDESt0ur9T7yr62opmSEFwvDdMq8pkADJ5dLXtq2zg862PB6LWF9K8NIXErz1ZQQffRHBTl9CkOkLCA760wkK/ckEhv5UAlN/IgHQn0YA9ScREP0pBFR/AkFFP5ygqh9M4NAPJXDpBxI49cMI3PpBBCf0QwhO6QcQnNQfTnBafzBBg/5Qgib9gQSN+sMIuP+N985UIV0uKZiA9n9/PnGvEAbqJ/8zrY3a/3M2sbGnuv6Cd4RFjUR/vzEEtNd7/mzEX6jNv7ytwwnOfP+z0dnYQsD6W60XqA0aAK432Bs4G8Tj4HZtAMAEcG1BK1KbPiQg/9MeN636gICOJ4ugXd8kqKzt5Ujs0TcIjPmXt+NI7NMvCMz5l7d1qP6BwHU2vw3Vzwgc3/9sa4e+9cKHwBp/V+uNxPQpUzIn2ZvA1L89MIGpn9g8SsDMLwKgb8usSH9lMzmxD8WmMYUW9P1kLfn/c6YNoGHgp6LvhwRfT+Ic7N/p4R3s3+lhEOw9mSt82C8QPoK9oygIck/qsMFhiXQQ5EvkgeDoyas2ODqJug2OTiIjKL1oxQalm6wRlG5yR2B5cWoDK1DgBFTCjmPIgmWHSozADtYWpk8IULCICVCw+CLAsSz4CzhcRgR4i7HwPZVpAxKuAwK2xVkogGmCsQBbxT4TfoF+EOqnoX4hsgDnLsV6Z9Ttjj0BAXXH+oBEH5JVglIUlEN9MyhNTF8flus3JmjfxLZm7EOBaegQU29OTaap23OqLzmgUB/RFE6naoOxh1TqYzr1QaX6qFZ9WC0/roe9PSZdWMivbDhBYYPxl1bea9O/FnN56r+4U1+dxiURqC+v9df3+gQGfQqHPolFn8ajT2TSp3JVRprdBoz/LoLhCYUnCQJSKk8RqJNK1Wm16sRidWq1OrlcnV6vLjBQl1ioi0zUZTbqQiN1qZW62ExdbqcuOFSXXKqLTtVlt+rCY2Hp9V2s/yKQ6v8S9Jb//wBuiZh/IiQqKgAAAABJRU5ErkJggg==" alt="Binance" style="width:20px;height:20px;object-fit:contain;border-radius:4px;"></div>
-              <div class="tl-name">Binance brings x402 to BNB Chain</div>
+              <div class="tl-name">Binance brings x402 to BNB Chain<span class="badge-new" title="New since the last edition"></span></div>
               <div class="tl-date">May 19, 2026</div>
               <p class="tl-desc">HTTP-native programmable payments land on BNB Chain, extending x402 beyond its Base/Coinbase origin for AI-agent micropayments and machine-to-machine transactions.</p>
               <a class="tl-src" href="https://blockchain.news/news/binance-x402-http-native-payments-bnb-chain" target="_blank" rel="noopener">Blockchain.News</a>
@@ -1046,7 +1053,18 @@
             <div class="tl-stem"></div><div class="tl-dot"></div>
           </div>
 
-          <div class="tl-node up" data-cat="network">
+                    <div class="tl-node down" data-cat="network">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#1677FF;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADeElEQVRYhcWXaWxMURTHf/f1jZbR2qtq6ZASWy2htRYhURWtLbVFJMTuQ/mksUSE2iIpTfhAxAdbxPIBIcQaQVQbpaU0wShTtZVaMzp6fbijMzXz3nRK9Z+85Ly559z//553zrkZgRvtV8o+lbBWCBKkpBP1ACGwS0muLsgs3SLyAQRAVIZcWiXZCej1QewHLk2QXrZF7Bbuk+f9R/JqEZYQ4rVKWNsA5AC6q4rVuvubB40lidCltbJLKyDrcp1EDNTrWnCLEyEqQtmFpXUTICU2rS7k/xINLsCw+LZNhsE248DWVo8d2waurTD2PZQDe24EKeDSIyh+bbzpqiTQQ5T94RsczDH2vfvCeM1QwPki4yCA5aPBGqrs919hr8EJA8G0/9tFQN8O/tdCvSLDwyCph3+/i4/hZ5Uxh4hcaTwFUuNgR5qZRF80sYAQyn76DoZsN/c3zcCpAvXUFi2aQOFqT22cfRA45p+24YTeHnKAs4WBYwwzEN0MxvaAyHBo3lgV2suPKq33HeB0+cbMHOixH7+GPJPqNxTQqQVsngiju4FmkJ8fLrjngJtP4UKRIhpkgwFeQz37amBy+KMIe7WDY/OhlVX1dl4JfHaCrqm5HxcNYRbfTd5+gW8/IKalere/V8VXVYtLrjoDmoDsNJASFh6G0wW+G+gaJNggrT+k9oGm7jnQpmlNv1cVSuw9RxAZGNkVjsyF5F21C7Q2gjmDYOFwVS/+UPwGjt+Fk/nw4kMAARljoX9HmL4vMLk3sqbCrHhzHykhtwTOFKjWLPESU/0JLCHw6Xtw5GvGecidLth4DsZ0h1Fda/oJAfEx6lk/AYrK4Eox3HrmlYEZA2DdeIjfBl+c5sRhOmSmwuwE9V75E+YdVB0BqpiXJMKkvupgZqgWEBEGeRmq8hcdgQqDbAztAhtTFAnAVycsOwrnHvr6tg2HuUNUrbSy+q7XEACQEgd7Z6mhcyIfbtvhzWd198dGQkrvmpfTneeK/Hm5+SlDdZjSDxYM8wj3KwDUAMqe5tta3igqg/234EBO7XrdG4M7w/yhkNxTjW2/t2GjEEjqCSNioX1z1XIl5WAvh+tPIMceHKk/REWoTyPaZshnUmL7+y2DhxDYNSnJbQhyN3I1C2wA/Nxt9Q6XrpGpObaK+5og/T+LcGmCdMcmkS9+/9JQf89/ASFOHcnh8mL+AAAAAElFTkSuQmCC" alt="Alipay" style="width:20px;height:20px;object-fit:contain;border-radius:4px;"></div>
+              <div class="tl-name">Alipay discloses AI Wallet, Token Pay, 300M agent transactions<span class="badge-new" title="New since the last edition"></span></div>
+              <div class="tl-date">May 26, 2026</div>
+              <p class="tl-desc">Alipay launches AI Wallet and Token Pay on its own Agentic Commerce Trust Protocol (built with Alibaba's Qwen app and Taobao Instant Commerce), disclosing 300 million AI agent transactions and support for 95% of general agent frameworks.</p>
+              <a class="tl-src" href="https://www.kucoin.com/news/flash/alipay-completes-300-million-ai-powered-agent-payments-advances-agentic-commerce-trust-protocol" target="_blank" rel="noopener">KuCoin</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+<div class="tl-node up" data-cat="network">
             <div class="tl-card" tabindex="0">
               <div class="tl-logo" style="background:#EB5F07;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAw1BMVEX////rABv3nhv/XwDqAAD3mgD3oBz/YgDrABj3mADrABX/XAD3nA/rAA/3nRX///35jhX706D4tLr7z5f//PftOkX84uX5uWH5slT/9Pb/+frxanT+7vD9bAjwV2L+9OX4rEL4lhj829/7fw/9dA30LRD7hRL82a76wnf7z9P3m6X0eIXwTl31go75vML95cf6yILtFi/7yIv96dL6vWzuKzz4pzP84bzxXWv6v4f2LAD3PA36xcr7SwnuRlD4pK72jZer3EgoAAAD3UlEQVR4nO2ZiW7aQBCGMT7wnULAxlx2nSbcEM7QhtS8/1N1jYEANt7fhDRSu5+EFEUrze+Z2dndmVyOwWAwGAwGg8FgMBgMBoMB4DjdXn/VGlRag/pwZDm1pEV35fL4vmPb1aptP9+P3fLdrayvewOBYBiGSn7kr0m/5J+vcsdTT1REPUIkf3rTsXsD87XNYCIYMneMKgiL+ujE/NQzRTN/AvmHN/2oBH8onFvfaTCEysjZrZrNlXPrew2K7X4gErVgISRZjzCEejf6eklMsh4hStd7waoY6kXzWwnqsJZ7WSZ//cEL+vLlOvu9iZFqniALq5/p5iMJ0/IV9oeUz4/41ZQkmgASh05mBY16SvTfeS1oze+IgmXWRGgJgHnuled5rYAo0L1MCmp9zH6BDxU084iCahYFG8j+49Y+UfCDbp9EwcYLwgiK/6PG73kAXJAXi6h9a4Hkv6oVDgK0b4AC00TrQZ+6/0Ne3+3zPLQVdA8LwjprAEIXQEFQ7iEBvxEHyG/HDiAgLjChalDCdsCpebIToDwEXOCsoAx4OxPAQ+XIlOgu6HJIBhiFcwH804224jBDDTwB2gjmkioAcoAciwBYC/I6LQY+loJaggBoJ+q0GGCnQEIESBpCAjoUAdgeSBSgAfbzJuVQdKAqxCVEIEwCRIA0S08B6BzikhzAa9hGHKcKWE+QTaAmC8DOg3QBo2vLEH+jalyCIvD4iQIQB/zbAr46BH8hCdNrcfert6FVgWKQZB+rhHk9vRJiF8L4fWgrALsQUARkeZOdA52GNuWdHGR6lGXPQX2abj/nQAKMpAsJdBbpbYoA9FUQFwBei6mdCiwG8STAnsh6lWYfvBHIcQ9AEaBUgS1X3submAOAXlE3sTF5znka3ioFQ+pwe+hTHECyYIL1Jz4nA0ICqBwfFyOwS0R7E+xxVlAQjjoEBRPr1JXbbcgJDQ7xgfquAGoRkQt5uW1jnaputjTAdgDWn9kRYH2iKAGwJt1ztrlBICM+2L6SMfu0UzBGicMUaE9Ao9bUM35/yBrJRNl4oI4LSPipXYFErBU1EYxJMF6mzGt27q9eOTJxekKqBFWodHM5t6PoqZ+vzK8fnTX63MWaRMwH0aqxLV2UoOtzyi2UwnooCGrcDbIhLAJrv6g8ribO7cKpXfuacdEJ1qbCGUfDQ1k1BHnSOgwNIwmzzlISdfOgwjR1Me913A+b37Lu9QeTcGYbIldam5IVXxQOjj1JVBSR/BTJmxdfbjU8JtQavu+Xer1e1/etxqVVZdedzdrFYns2c2/07QwGg8FgMBgMBoPBYDD+B/4AWdNmPT0+yoUAAAAASUVORK5CYII=" alt="Mastercard" style="width:20px;height:20px;object-fit:contain;border-radius:4px;"></div>
               <div class="tl-name">Mastercard Agent Pay for Machines</div>
@@ -1061,7 +1079,7 @@
                     <div class="tl-node up" data-cat="commerce">
             <div class="tl-card" tabindex="0">
               <div class="tl-logo" style="background:#1677FF;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADeElEQVRYhcWXaWxMURTHf/f1jZbR2qtq6ZASWy2htRYhURWtLbVFJMTuQ/mksUSE2iIpTfhAxAdbxPIBIcQaQVQbpaU0wShTtZVaMzp6fbijMzXz3nRK9Z+85Ly559z//553zrkZgRvtV8o+lbBWCBKkpBP1ACGwS0muLsgs3SLyAQRAVIZcWiXZCej1QewHLk2QXrZF7Bbuk+f9R/JqEZYQ4rVKWNsA5AC6q4rVuvubB40lidCltbJLKyDrcp1EDNTrWnCLEyEqQtmFpXUTICU2rS7k/xINLsCw+LZNhsE248DWVo8d2waurTD2PZQDe24EKeDSIyh+bbzpqiTQQ5T94RsczDH2vfvCeM1QwPki4yCA5aPBGqrs919hr8EJA8G0/9tFQN8O/tdCvSLDwyCph3+/i4/hZ5Uxh4hcaTwFUuNgR5qZRF80sYAQyn76DoZsN/c3zcCpAvXUFi2aQOFqT22cfRA45p+24YTeHnKAs4WBYwwzEN0MxvaAyHBo3lgV2suPKq33HeB0+cbMHOixH7+GPJPqNxTQqQVsngiju4FmkJ8fLrjngJtP4UKRIhpkgwFeQz37amBy+KMIe7WDY/OhlVX1dl4JfHaCrqm5HxcNYRbfTd5+gW8/IKalere/V8VXVYtLrjoDmoDsNJASFh6G0wW+G+gaJNggrT+k9oGm7jnQpmlNv1cVSuw9RxAZGNkVjsyF5F21C7Q2gjmDYOFwVS/+UPwGjt+Fk/nw4kMAARljoX9HmL4vMLk3sqbCrHhzHykhtwTOFKjWLPESU/0JLCHw6Xtw5GvGecidLth4DsZ0h1Fda/oJAfEx6lk/AYrK4Eox3HrmlYEZA2DdeIjfBl+c5sRhOmSmwuwE9V75E+YdVB0BqpiXJMKkvupgZqgWEBEGeRmq8hcdgQqDbAztAhtTFAnAVycsOwrnHvr6tg2HuUNUrbSy+q7XEACQEgd7Z6mhcyIfbtvhzWd198dGQkrvmpfTneeK/Hm5+SlDdZjSDxYM8wj3KwDUAMqe5tta3igqg/234EBO7XrdG4M7w/yhkNxTjW2/t2GjEEjqCSNioX1z1XIl5WAvh+tPIMceHKk/REWoTyPaZshnUmL7+y2DhxDYNSnJbQhyN3I1C2wA/Nxt9Q6XrpGpObaK+5og/T+LcGmCdMcmkS9+/9JQf89/ASFOHcnh8mL+AAAAAElFTkSuQmCC" alt="Alipay" style="width:20px;height:20px;object-fit:contain;border-radius:4px;"></div>
-              <div class="tl-name">Alipay launches "Ah Bao" AI agent interface</div>
+              <div class="tl-name">Alipay launches "Ah Bao" AI agent interface<span class="badge-new" title="New since the last edition"></span></div>
               <div class="tl-date">Jun 16, 2026</div>
               <p class="tl-desc">The world's largest super-app (1B+ users) goes AI-native: a conversational assistant for 10,000+ everyday services, from ride-hailing to fund purchases - every payment still requires explicit user confirmation.</p>
               <a class="tl-src" href="https://www.scmp.com/tech/big-tech/article/3357307/ni-hao-ah-bao-chinas-alipay-gets-ai-agent-overhaul-challenge-big-tech-rivals" target="_blank" rel="noopener">South China Morning Post</a>
@@ -1682,6 +1700,11 @@
           <span class="pname">A-Comm Evidence Protocol <span class="org">&middot; draft, open for comment &middot; Jul 20, 2026</span></span>
           <a class="plink" href="https://www.digitaltransactions.net/a-comms-agentic-prep-and-other-digital-transactions-news-briefs-from-7-20-26/" target="_blank" rel="noopener">Digital Transactions &rarr;</a>
           <p class="pdesc">A-Comm Technologies' draft standard for building an evidence record establishing the validity of AI-initiated consumer transactions, public comment period runs through Aug 14.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Unified Agent Protocol (UAP)<span class="badge-new" title="New since the last edition"></span> <span class="org">&middot; proposal, not yet launched &middot; reported Jul 8, 2026</span></span>
+          <a class="plink" href="https://www.business-standard.com/finance/news/india-may-allow-agentic-ai-led-upi-transactions-under-new-npci-protocol-126070801343_1.html" target="_blank" rel="noopener">Business Standard &rarr;</a>
+          <p class="pdesc">NPCI is developing a framework to authenticate and register AI agents transacting over India's UPI - 22.71B transactions in June 2026 alone - within user-defined limits. Still needs an RBI regulatory nod before launch; included here as a proposal to watch, not a live protocol.</p>
         </div>
         <div class="proto-row">
           <span class="pname">Ripple joins the x402 standard <span class="org">&middot; Jul 15, 2026</span></span>
