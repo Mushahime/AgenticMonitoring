@@ -384,6 +384,82 @@
   .site-footer .credit{
     margin-top:14px;font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;color:var(--ink-muted);
   }
+
+  /* ---------- Timeline page ---------- */
+  .tl-filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px;}
+  .tl-filter{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:11.5px;font-weight:600;
+    border:1px solid var(--line);background:var(--surface);color:var(--ink-muted);
+    padding:6px 13px;border-radius:100px;cursor:pointer;transition:all .12s ease;
+  }
+  .tl-filter:hover{border-color:var(--accent-2);color:var(--ink);}
+  .tl-filter.active{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff;}
+  .tl-hint{font-size:12.5px;color:var(--ink-muted);margin:2px 0 22px;}
+  .tl-scroll{
+    overflow-x:auto;overflow-y:hidden;padding:10px 4px 28px;margin:0 -4px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .tl-track{
+    position:relative;display:flex;align-items:flex-start;min-width:max-content;
+    padding:30px 40px 30px 20px;
+  }
+  .tl-spine{
+    position:absolute;left:0;right:0;top:190px;height:2px;background:var(--line);z-index:0;
+  }
+  .tl-node{
+    position:relative;flex:0 0 auto;width:172px;height:320px;
+    z-index:1;transition:opacity .2s ease;
+  }
+  .tl-node.tl-hidden{display:none;}
+  .tl-dot{
+    position:absolute;top:160px;left:50%;transform:translate(-50%,-50%);
+    width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);
+    box-shadow:0 0 0 1px var(--accent);z-index:2;
+  }
+  .tl-stem{position:absolute;left:50%;transform:translateX(-50%);width:1px;background:var(--line);height:26px;}
+  .tl-node.up .tl-stem{bottom:160px;}
+  .tl-node.down .tl-stem{top:160px;}
+  .tl-month{
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:10px;color:var(--ink-muted);
+    white-space:nowrap;letter-spacing:.04em;
+  }
+  .tl-node.up .tl-month{top:166px;}
+  .tl-node.down .tl-month{bottom:166px;}
+  .tl-card{
+    position:absolute;left:50%;transform:translateX(-50%);
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:10px 12px;width:164px;cursor:pointer;
+    transition:transform .12s ease,border-color .12s ease;
+  }
+  .tl-card:hover{transform:translateX(-50%) translateY(-2px);border-color:var(--accent-2);}
+  .tl-node.up .tl-card{bottom:186px;}
+  .tl-node.down .tl-card{top:186px;}
+  .tl-logo{
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-weight:700;font-size:10px;color:#fff;
+    margin:0 auto 8px;letter-spacing:-.02em;line-height:1;text-align:center;
+  }
+  .tl-name{font-size:12.5px;font-weight:700;text-align:center;line-height:1.25;font-family:Georgia,serif;}
+  .tl-date{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:10px;color:var(--ink-muted);
+    text-align:center;margin-top:3px;
+  }
+  .tl-desc{
+    font-size:11.5px;color:var(--ink-muted);line-height:1.4;margin-top:8px;
+    display:none;max-width:100%;
+  }
+  .tl-card.tl-open .tl-desc{display:block;}
+  .tl-card.tl-open{width:230px;}
+  .tl-src{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:10px;color:var(--accent-2);
+    margin-top:8px;display:none;text-decoration:none;
+  }
+  .tl-card.tl-open .tl-src{display:inline-flex;align-items:center;gap:4px;}
+  .tl-src::before{content:"→";}
+  @media(max-width:640px){
+    .tl-scroll{padding-bottom:16px;}
+  }
 </style>
 </head>
 <body>
@@ -397,6 +473,7 @@
     <nav class="pages" aria-label="Navigation">
       <a href="#home" data-page="home">Home</a>
       <a href="#fortnight" data-page="fortnight">This Fortnight</a>
+      <a href="#timeline" data-page="timeline">Timeline</a>
       <a href="#network" data-page="network">Network &amp; Payments</a>
       <a href="#commerce" data-page="commerce">Commerce</a>
       <a href="#market" data-page="market">Market</a>
@@ -637,6 +714,284 @@
           <span class="pname">Amazon <span class="org">&middot; May 2026</span></span>
           <a class="plink" href="https://www.geekwire.com/2026/amazon-offers-its-ai-shopping-tech-to-outside-retailers-in-new-phase-of-agentic-commerce-race/" target="_blank" rel="noopener">GeekWire &rarr;</a>
           <p class="pdesc">Retired Rufus into Alexa for Shopping, and packaged the underlying tech as the Agentic Shopping Assistant so outside retailers can deploy it in about 60 days - Tapestry's Kate Spade Gift Concierge is the first outside production use.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-timeline" data-page="timeline">
+  <div class="wrap">
+    <section class="pagehead">
+      <h1 class="page-title">Timeline</h1>
+      <p class="subtitle">Every major agentic commerce and payments protocol, standard and launch, in order - from MCP in Nov 2024 to this week. Click a card for the detail and source. Every entry links to a real, checkable announcement.</p>
+    </section>
+    <div class="block">
+      <div class="tl-filters">
+        <button class="tl-filter active" data-filter="all">All (22)</button>
+        <button class="tl-filter" data-filter="protocol">Protocol</button>
+        <button class="tl-filter" data-filter="network">Network</button>
+        <button class="tl-filter" data-filter="commerce">Commerce</button>
+        <button class="tl-filter" data-filter="trust">Trust &amp; identity</button>
+        <button class="tl-filter" data-filter="crypto">Crypto</button>
+      </div>
+      <p class="tl-hint">Scroll horizontally to browse. Click any card to expand it.</p>
+
+      <div class="tl-scroll">
+        <div class="tl-track">
+          <div class="tl-spine"></div>
+
+          <div class="tl-node up" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#D97757;">MCP</div>
+              <div class="tl-name">Model Context Protocol</div>
+              <div class="tl-date">Nov 2024</div>
+              <p class="tl-desc">Anthropic open-sources MCP, standardizing how AI models connect to external tools and data - the plumbing most agentic commerce protocols now build on top of.</p>
+              <a class="tl-src" href="https://modelcontextprotocol.io/specification/2025-06-18" target="_blank" rel="noopener">Specification</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Nov &rsquo;24</div>
+          </div>
+
+          <div class="tl-node down" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#111111;">ACP</div>
+              <div class="tl-name">Agentic Commerce Protocol</div>
+              <div class="tl-date">Sep 2025</div>
+              <p class="tl-desc">OpenAI and Stripe launch ACP with Instant Checkout in ChatGPT, Shopify and Etsy as flagship partners - the reference implementation every other ACP integration was measured against, until March 2026.</p>
+              <a class="tl-src" href="https://openai.com/index/buy-it-in-chatgpt/" target="_blank" rel="noopener">openai.com</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Sep &rsquo;25</div>
+          </div>
+
+          <div class="tl-node up" data-cat="commerce">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#635BFF;">ACS</div>
+              <div class="tl-name">Stripe Agentic Commerce Suite</div>
+              <div class="tl-date">Dec 11, 2025</div>
+              <p class="tl-desc">Stripe launches its own Agentic Commerce Suite, a product rather than a single-partner deal, with Coach, Kate Spade, URBN, Wix, Etsy and Squarespace at launch.</p>
+              <a class="tl-src" href="https://stripe.com/newsroom/news/agentic-commerce-suite" target="_blank" rel="noopener">stripe.com</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Dec &rsquo;25</div>
+          </div>
+
+          <div class="tl-node down" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#0B051D;">KLA</div>
+              <div class="tl-name">Klarna Agentic Product Protocol</div>
+              <div class="tl-date">Dec 12, 2025</div>
+              <p class="tl-desc">Klarna's own product-level protocol for surfacing catalog data to shopping agents - a hedge against any single standard (UCP, Stripe's Shared Payment Tokens) winning outright.</p>
+              <a class="tl-src" href="https://www.klarna.com/international/press/introducing-klarnas-agentic-product-protocol/" target="_blank" rel="noopener">Klarna press</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#24292F;">OW</div>
+              <div class="tl-name">OWASP Top 10 for Agentic Apps</div>
+              <div class="tl-date">Dec 2025</div>
+              <p class="tl-desc">The reference threat model now cited across the industry for agent goal hijacking, tool misuse, identity/privilege abuse and supply-chain compromise.</p>
+              <a class="tl-src" href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">genai.owasp.org</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#4285F4;">UCP</div>
+              <div class="tl-name">Universal Commerce Protocol</div>
+              <div class="tl-date">Jan 11, 2026</div>
+              <p class="tl-desc">Google and Shopify launch an open, vendor-neutral standard modeling the full shopping journey - checkout, identity linking, order lifecycle - not just payment.</p>
+              <a class="tl-src" href="https://ucp.dev/" target="_blank" rel="noopener">ucp.dev</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Jan &rsquo;26</div>
+          </div>
+
+          <div class="tl-node up" data-cat="trust">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#6C4FCE;">KYA</div>
+              <div class="tl-name">KYA-OS (formerly MCP-I)</div>
+              <div class="tl-date">Mar 2026</div>
+              <p class="tl-desc">Vouched donates its agent-identity framework to the Decentralized Identity Foundation, renamed Know Your Agent Operating System - DIDs and Verifiable Credentials giving agents a cryptographic identity.</p>
+              <a class="tl-src" href="https://blog.identity.foundation/kya-os/" target="_blank" rel="noopener">identity.foundation</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Mar &rsquo;26</div>
+          </div>
+
+          <div class="tl-node down" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#635BFF;">MPP</div>
+              <div class="tl-name">Machine Payments Protocol</div>
+              <div class="tl-date">Mar 18, 2026</div>
+              <p class="tl-desc">Stripe and Tempo launch MPP: a client pays inline with its HTTP request via the native 402 status code, no API keys or pre-provisioned accounts, settling in stablecoins, cards or Lightning.</p>
+              <a class="tl-src" href="https://github.com/tempoxyz/mpp-specs" target="_blank" rel="noopener">Specification</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="commerce">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#111111;">IC</div>
+              <div class="tl-name">OpenAI ends Instant Checkout</div>
+              <div class="tl-date">Mar 24, 2026</div>
+              <p class="tl-desc">Killed after near-zero conversion (Walmart measured it 3x worse than clicking through to its own site). ChatGPT pivots to discovery via ACP; merchants run checkout in their own in-chat apps.</p>
+              <a class="tl-src" href="https://www.digitalcommerce360.com/2026/03/24/openai-agentic-commerce-updates-chatgpt-walmart/" target="_blank" rel="noopener">Digital Commerce 360</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="network">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#E21836;">APOP</div>
+              <div class="tl-name">UnionPay Agentic Payment Open Protocol</div>
+              <div class="tl-date">Apr 2, 2026</div>
+              <p class="tl-desc">China's answer to the standards fight, demoed live with an AI-booked taxi ride in Hong Kong the same day.</p>
+              <a class="tl-src" href="https://www.prnewswire.com/apac/news-releases/unionpay-launches-agentic-payment-open-protocol-framework-building-an-open-trusted-smart-payment-ecosystem-302733540.html" target="_blank" rel="noopener">PR Newswire</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Apr &rsquo;26</div>
+          </div>
+
+          <div class="tl-node up" data-cat="network">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#006FCF;">ACE</div>
+              <div class="tl-name">Amex Agentic Commerce Experiences</div>
+              <div class="tl-date">Apr 14, 2026</div>
+              <p class="tl-desc">Developer kit plus Agent Purchase Protection, extending purchase backing to card-member purchases made by registered AI agents.</p>
+              <a class="tl-src" href="https://www.americanexpress.com/en-us/company/agentic-commerce/" target="_blank" rel="noopener">American Express</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="trust">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#123940;">FACT</div>
+              <div class="tl-name">FACT (Fime)</div>
+              <div class="tl-date">Apr 21, 2026</div>
+              <p class="tl-desc">A neutral trust layer between AI agents and payment rails: intent validation, continuous compliance monitoring, independent auditor agents - interoperable across whichever protocol runs underneath.</p>
+              <a class="tl-src" href="https://www.fime.com/fr/blog/news-21/post/fime-launches-fact-the-first-trust-layer-for-agentic-commerce-684" target="_blank" rel="noopener">fime.com</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="trust">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#1B4A63;">AP2</div>
+              <div class="tl-name">AP2 donated to FIDO Alliance</div>
+              <div class="tl-date">Apr 28, 2026</div>
+              <p class="tl-desc">Google hands governance of the Agent Payments Protocol to FIDO, alongside Mastercard's Verifiable Intent - community-run standards instead of single-vendor control.</p>
+              <a class="tl-src" href="https://fidoalliance.org/google-donates-agent-payments-protocol-to-fido-alliance/" target="_blank" rel="noopener">FIDO Alliance</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="trust">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#5A2D82;">EXP</div>
+              <div class="tl-name">Experian Agent Trust</div>
+              <div class="tl-date">Apr 30, 2026</div>
+              <p class="tl-desc">A "Know Your Agent" framework establishing a secure, verifiable link between a consumer and the agents acting for them, built with Visa, Cloudflare and Skyfire.</p>
+              <a class="tl-src" href="https://www.experianplc.com/newsroom/press-releases/2026/experian-announces-agent-trust-to-power-trusted-ai-driven-commer" target="_blank" rel="noopener">Experian</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="commerce">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#4285F4;">CART</div>
+              <div class="tl-name">Google Universal Cart</div>
+              <div class="tl-date">May 19, 2026</div>
+              <p class="tl-desc">One persistent shopping cart across Search, Gemini, YouTube and Gmail, launched at I/O alongside an AP2 update enabling autonomous "human not present" purchases.</p>
+              <a class="tl-src" href="https://blog.google/products-and-platforms/products/shopping/google-shopping-cart/" target="_blank" rel="noopener">blog.google</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">May &rsquo;26</div>
+          </div>
+
+          <div class="tl-node down" data-cat="protocol">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#005A9C;">WMCP</div>
+              <div class="tl-name">WebMCP</div>
+              <div class="tl-date">May 19, 2026</div>
+              <p class="tl-desc">A W3C Community Group draft lets sites expose native tool interfaces to in-browser AI agents (Chrome's Intent to Experiment filed Apr 2026, announced publicly at I/O).</p>
+              <a class="tl-src" href="https://rankly.substack.com/p/inside-webmcp-how-googles-new-browser" target="_blank" rel="noopener">Analysis</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="network">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#EB5F07;">AP4M</div>
+              <div class="tl-name">Mastercard Agent Pay for Machines</div>
+              <div class="tl-date">Jun 2026</div>
+              <p class="tl-desc">A new settlement layer under the Agent Pay umbrella, built specifically for agent-to-agent microtransactions down to fractions of a cent.</p>
+              <a class="tl-src" href="https://www.mastercard.com/us/en/news-and-trends/press/2026/june/mastercard-launches-agent-pay-for-machines.html" target="_blank" rel="noopener">Mastercard newsroom</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Jun &rsquo;26</div>
+          </div>
+
+          <div class="tl-node down" data-cat="commerce">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#0ABF53;">ADY</div>
+              <div class="tl-name">Adyen Agentic</div>
+              <div class="tl-date">Jun 16, 2026</div>
+              <p class="tl-desc">Positions itself as the "universal translator" for agent checkout - one integration lets merchants plug into whichever protocol (ACP, UCP, AP2, x402) a given shopping agent speaks.</p>
+              <a class="tl-src" href="https://www.pymnts.com/news/b2b-payments/2026/adyen-debuts-agentic-solutions-for-enterprise-merchants/" target="_blank" rel="noopener">PYMNTS</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node up" data-cat="trust">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#14B8A6;">x401</div>
+              <div class="tl-name">Proof x401</div>
+              <div class="tl-date">Jun 26, 2026</div>
+              <p class="tl-desc">An open identity protocol answering who authorized an agent's action - x402 answers how an agent pays, x401 answers who it is, pairing payment with verified identity.</p>
+              <a class="tl-src" href="https://www.proof.com/x401" target="_blank" rel="noopener">proof.com</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="crypto">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#0052FF;">x402</div>
+              <div class="tl-name">x402 Foundation goes operational</div>
+              <div class="tl-date">Jul 14, 2026</div>
+              <p class="tl-desc">The Linux Foundation declares x402 governance operationally live with 40 member organizations - moving it from a Coinbase project to industry-run infrastructure.</p>
+              <a class="tl-src" href="https://www.tftc.io/x402-foundation-operational-launch-ai-agent-payments" target="_blank" rel="noopener">TFTC</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+            <div class="tl-month">Jul &rsquo;26</div>
+          </div>
+
+          <div class="tl-node up" data-cat="crypto">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#23292F;">XRP</div>
+              <div class="tl-name">Ripple joins x402</div>
+              <div class="tl-date">Jul 15, 2026</div>
+              <p class="tl-desc">A crypto-native rail joins the same standards body as Visa and Mastercard, as 75M x402 payments move $24M in 30 days.</p>
+              <a class="tl-src" href="https://www.coindesk.com/tech/2026/07/15/visa-mastercard-and-ripple-join-the-standard-letting-ai-agents-pay-in-stablecoins" target="_blank" rel="noopener">CoinDesk</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
+          <div class="tl-node down" data-cat="network">
+            <div class="tl-card" tabindex="0">
+              <div class="tl-logo" style="background:#37474F;">USPF</div>
+              <div class="tl-name">U.S. Payments Forum primer</div>
+              <div class="tl-date">Jul 22, 2026</div>
+              <p class="tl-desc">Frames agentic commerce as "an inflection point for how consumer intent and authorization are understood," covering consent, security and interoperability for merchants, issuers and PSPs.</p>
+              <a class="tl-src" href="https://www.manilatimes.net/2026/07/22/tmt-newswire/globenewswire/us-payments-forum-publishes-primer-on-agentic-commerce/2389448" target="_blank" rel="noopener">GlobeNewswire</a>
+            </div>
+            <div class="tl-stem"></div><div class="tl-dot"></div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -1535,6 +1890,36 @@
 
   window.addEventListener('hashchange', function(){ show(current()); });
   show(current());
+})();
+
+(function(){
+  var cards = document.querySelectorAll('.tl-card');
+  cards.forEach(function(card){
+    function toggle(){
+      var wasOpen = card.classList.contains('tl-open');
+      cards.forEach(function(c){ c.classList.remove('tl-open'); });
+      if (!wasOpen) card.classList.add('tl-open');
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  var filters = document.querySelectorAll('.tl-filter');
+  var nodes = document.querySelectorAll('.tl-node');
+  filters.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filters.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-filter');
+      nodes.forEach(function(n){
+        var show = (cat === 'all' || n.getAttribute('data-cat') === cat);
+        n.classList.toggle('tl-hidden', !show);
+      });
+      cards.forEach(function(c){ c.classList.remove('tl-open'); });
+    });
+  });
 })();
 </script>
 
