@@ -10,4 +10,6 @@ desktop.ini
 
 # Local scratch
 *.tmp
-*.bak
+
+# More
+/Skills(snapshots)/
