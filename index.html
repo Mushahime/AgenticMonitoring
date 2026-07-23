@@ -131,6 +131,31 @@
   nav.pages a.active{color:#052E27; background:var(--brand-mint);}
   nav.pages a:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
 
+  .nav-more{position:relative;display:inline-block;}
+  .nav-more-trigger{
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;font-size:12.5px;
+    padding:7px 11px;border-radius:100px;border:none;background:none;color:var(--ink-muted);
+    cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:background .12s ease,color .12s ease;
+  }
+  .nav-more-trigger:hover{color:var(--ink);background:var(--surface-2);}
+  .nav-more-trigger.active{color:#052E27;background:var(--brand-mint);}
+  .nav-more-trigger:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
+  .nav-more-trigger .chev{font-size:9px;transition:transform .15s ease;}
+  .nav-more.open .nav-more-trigger .chev{transform:rotate(180deg);}
+  .nav-more-menu{
+    position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;box-shadow:var(--shadow);padding:6px;min-width:170px;
+    display:none;flex-direction:column;gap:2px;z-index:30;
+  }
+  .nav-more.open .nav-more-menu{display:flex;}
+  .nav-more-menu a{
+    padding:7px 11px;border-radius:8px;text-decoration:none;color:var(--ink-muted);font-size:12.5px;
+    font-family:"IBM Plex Mono","SF Mono",Consolas,monospace;white-space:nowrap;
+  }
+  .nav-more-menu a:hover{background:var(--surface-2);color:var(--ink);}
+  .nav-more-menu a.active{background:var(--brand-mint);color:#052E27;}
+  .nav-more-menu a:focus-visible{outline:2px solid var(--accent-2); outline-offset:-2px;}
+
   /* ---------- Pages ---------- */
   .page{display:none;}
   .page.active{display:block;}
@@ -504,10 +529,15 @@
       <a href="#research" data-page="research">Research</a>
       <a href="#linkedin" data-page="linkedin">LinkedIn</a>
       <a href="#protocols" data-page="protocols">Protocols</a>
-      <a href="#perplexity" data-page="perplexity">Perplexity</a>
-      <a href="#fact" data-page="fact">FACT</a>
-      <a href="#atlas" data-page="atlas">ATLAS</a>
-      <a href="#archive" data-page="archive">Archive</a>
+      <div class="nav-more">
+        <button class="nav-more-trigger" type="button" aria-expanded="false" aria-haspopup="true">More <span class="chev">&#9662;</span></button>
+        <div class="nav-more-menu">
+          <a href="#perplexity" data-page="perplexity">Perplexity</a>
+          <a href="#fact" data-page="fact">FACT</a>
+          <a href="#atlas" data-page="atlas">ATLAS</a>
+          <a href="#archive" data-page="archive">Archive</a>
+        </div>
+      </div>
     </nav>
   </div>
 </div>
@@ -2029,6 +2059,8 @@
   var pages = document.querySelectorAll('.page');
   var links = document.querySelectorAll('nav.pages a');
   var valid = Array.prototype.map.call(pages, function(p){ return p.getAttribute('data-page'); });
+  var moreTrigger = document.querySelector('.nav-more-trigger');
+  var morePages = ['perplexity','fact','atlas','archive'];
 
   function show(name){
     if (valid.indexOf(name) === -1) name = 'home';
@@ -2038,6 +2070,7 @@
     links.forEach(function(l){
       l.classList.toggle('active', l.getAttribute('data-page') === name);
     });
+    if (moreTrigger) moreTrigger.classList.toggle('active', morePages.indexOf(name) !== -1);
     window.scrollTo(0, 0);
   }
 
@@ -2047,6 +2080,30 @@
 
   window.addEventListener('hashchange', function(){ show(current()); });
   show(current());
+})();
+
+(function(){
+  var navMore = document.querySelector('.nav-more');
+  if (!navMore) return;
+  var trigger = navMore.querySelector('.nav-more-trigger');
+  function close(){
+    navMore.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  function toggle(){
+    var isOpen = navMore.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  trigger.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  navMore.querySelectorAll('.nav-more-menu a').forEach(function(a){
+    a.addEventListener('click', close);
+  });
+  document.addEventListener('click', function(e){
+    if (!navMore.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') close();
+  });
 })();
 
 (function(){
