@@ -36,13 +36,6 @@ function shellTopBodyOnly(s) {
 
 fs.writeFileSync(path.join(__dirname, 'index.html'), full);
 
-// ---------- copy assets/ next to index.html so relative src="assets/..." refs resolve ----------
-const rootAssetsDir = path.join(__dirname, 'assets');
-fs.mkdirSync(rootAssetsDir, { recursive: true });
-for (const file of fs.readdirSync(path.join(SRC, 'assets'))) {
-  fs.copyFileSync(path.join(SRC, 'assets', file), path.join(rootAssetsDir, file));
-}
-
 // ---------- Artifact-ready fragment (no doctype/html/head/body) ----------
 const titleMatch = head.match(/<title>[\s\S]*?<\/title>/);
 const title = titleMatch ? titleMatch[0] : '<title>Watch - Agentic Commerce &amp; Payments</title>';
@@ -59,7 +52,7 @@ let artifact = [
 // The Artifact publish target can't load external files (CSP blocks it),
 // so re-inline every assets/*.png|jpg reference as a base64 data: URI just
 // for this build output. GitHub Pages' index.html above keeps real file refs.
-const assetsDir = path.join(SRC, 'assets');
+const assetsDir = path.join(__dirname, 'assets');
 artifact = artifact.replace(/src="assets\/([^"]+)"/g, (full, filename) => {
   const filePath = path.join(assetsDir, filename);
   const ext = path.extname(filename).slice(1);
