@@ -1,0 +1,50 @@
+<section class="page" id="page-atlas" data-page="atlas">
+  <div class="wrap" style="padding-top:28px;">
+    <div class="fact-hero atlas-hero">
+      <span class="spotlight-badge alt">Hyperlab</span>
+      <span class="spotlight-badge">Fime</span>
+      <span class="fdate">Working draft, v0.1 - July 2026, not yet endorsed by an external standards body</span>
+      <h1>ATLAS - Agent Trust Layer and Assurance Standard</h1>
+      <p>A cryptographic protocol for independent assessment of autonomous AI agent behavior in commerce transactions. ATLAS standardizes how "Assessor" agents obtain encrypted evidence from subject agents, evaluate their compliance with policy, and produce verifiable trust signals for payment systems - developed by Fime/Consult Hyperion's Hyperlab as part of a Continuous Certification programme for agentic commerce.</p>
+      <p style="margin-top:10px;"><strong>ATLAS vs FACT, in one line:</strong> ATLAS is the standard - the open cryptographic protocol itself (message formats, key binding, the five-artifact chain). FACT is Fime's implementation of that same "verify the agent's behavior independently" idea, packaged as a practical trust-layer service and broader in scope (it also covers intent validation and continuous compliance monitoring). Spec vs product.</p>
+      <div class="fact-links">
+        <a href="https://hyperlab-fime.github.io/ATLAS-PUBLIC/atlas-protocol-specification-0.1draft.html" target="_blank" rel="noopener">Full specification - hyperlab-fime.github.io</a>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>The problem: intent drift</h2>
+      <p>An AI agent's interpretation of user constraints - budget, allergens, preferences - can diverge from actual intent across the interpretation, structuring and filtering layers it passes through before acting. No standardized mechanism currently exists for independent, runtime verification of what an agent actually did during a transaction, which leaves gaps in liability allocation, fraud detection and regulatory compliance.</p>
+    </div>
+
+    <div class="fact-section">
+      <h2>Five linked artifacts</h2>
+      <div class="fact-grid">
+        <div class="fact-tile"><span class="num">Link 1</span><h4>Assessment delegation</h4><p>The subject agent delegates assessment of its own behavior.</p></div>
+        <div class="fact-tile"><span class="num">Link 2</span><h4>Sub-delegation</h4><p>The holder's sub-delegation, used in merchant / credential-provider mode only.</p></div>
+        <div class="fact-tile"><span class="num">Link 3</span><h4>Access assertion</h4><p>The Assessor's access assertion, carrying its own authorization credentials.</p></div>
+        <div class="fact-tile"><span class="num">Link 4</span><h4>Verdict</h4><p>The Assessor's verdict, with evidence hashes and a report token.</p></div>
+        <div class="fact-tile"><span class="num">Link 5</span><h4>Redemption token</h4><p>An opaque downstream token for payment rails, carrying no raw intent data.</p></div>
+      </div>
+      <p style="margin-top:14px;">Two operational patterns: <strong>holder mode</strong>, where a merchant or credential provider commissions the assessment, and <strong>direct mode</strong>, where the agent self-commissions it for compliance purposes.</p>
+    </div>
+
+    <div class="fact-section">
+      <h2>How it relates to AP2, Verifiable Intent and FACT</h2>
+      <p>ATLAS complements rather than replaces these - it adds a layer none of them currently provide.</p>
+      <div class="fact-compare">
+        <div>
+          <h4>AP2 / Verifiable Intent</h4>
+          <p>Secure <strong>mandate execution</strong>: does the transaction match the cryptographically signed constraints the user agreed to?</p>
+        </div>
+        <div>
+          <h4>ATLAS</h4>
+          <p>Secures <strong>runtime behavior</strong>: continuously monitors what the agent actually does versus what it claims to do, independent of the payment rail underneath.</p>
+        </div>
+      </div>
+      <p style="margin-top:14px;">Evidence stays encrypted (JWE) to Assessors only, using JWS/JWT capability tokens with RFC 7800 key binding (<code class="mono">cnf</code> claims) over TLS transport. Downstream payment systems only ever receive the compact opaque Link 5 token, never raw intent data - the same neutrality principle FACT applies to its own attestations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARCHIVE ================= -->

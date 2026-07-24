@@ -1,0 +1,99 @@
+<section class="page" id="page-fact" data-page="fact">
+  <div class="wrap" style="padding-top:28px;">
+    <div class="fact-hero">
+      <span class="spotlight-badge">Fime</span>
+      <span class="spotlight-badge alt">Consult Hyperion</span>
+      <span class="fdate">Launched April 21, 2026 - reference page, updated whenever there's news</span>
+      <h1>FACT - Framework for Agentic Commerce Trust</h1>
+      <p>Fime launches FACT, a neutral, independent trust layer between AI systems and payment rails: intent validation, continuous compliance monitoring, independent auditor agents, and transaction-by-transaction trust attestation. Unlike mechanisms built into a single network or platform, FACT stays interoperable and free of conflicts of interest.</p>
+      <blockquote>"We've built systems that let AI transact - we haven't yet built the systems that let us trust those transactions at scale."
+        <cite>Lionel Grosclaude, CEO of Fime</cite>
+      </blockquote>
+      <div class="fact-links">
+        <a href="https://www.fime.com/fr/blog/news-21/post/fime-launches-fact-the-first-trust-layer-for-agentic-commerce-684" target="_blank" rel="noopener">Full announcement - fime.com</a>
+        <a href="https://thepaypers.com/fraud-and-fincrime/news/fime-rolls-out-fact-trust-framework-for-ai-agent-initiated-payment-transactions" target="_blank" rel="noopener">Coverage - The Paypers</a>
+        <a href="https://www.biometricupdate.com/202604/fime-launches-agentic-commerce-trust-layer-service" target="_blank" rel="noopener">Coverage - Biometric Update</a>
+        <a href="https://ffnews.com/newsarticle/fime-launches-fact-the-first-trust-layer-for-agentic-commerce/" target="_blank" rel="noopener">Coverage - FFNews</a>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>FACT's four functions</h2>
+      <div class="fact-grid">
+        <div class="fact-tile"><span class="num">01</span><h4>Intent validation</h4><p>Checks that the action an agent proposes stays aligned with the intent expressed by the user or business.</p></div>
+        <div class="fact-tile"><span class="num">02</span><h4>Real-time compliance</h4><p>Continuous monitoring of agent behavior against defined rules and regulatory requirements.</p></div>
+        <div class="fact-tile"><span class="num">03</span><h4>Independent auditor agents</h4><p>Neutral third-party agents provide impartial trust verification, accredited by a certification body.</p></div>
+        <div class="fact-tile"><span class="num">04</span><h4>Transaction-by-transaction attestation</h4><p>A per-transaction trust signal usable for decisioning, auditability and traceability.</p></div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>What FACT adds on top of Verifiable Intent</h2>
+      <p>Verifiable Intent (VI), Mastercard/Google's cryptographic protocol, proves a transaction satisfies the formal constraints of a signed mandate - a precise, binary result, but blind to everything that happened before it. FACT continuously observes the agent's exchanges (prompts, tool calls, cart context) and compares them against the user's original intent: a transaction can be formally valid under VI while still resulting from a misread intent or a prompt injection.</p>
+      <div class="fact-compare">
+        <div>
+          <h4>Verifiable Intent</h4>
+          <p>Verifies the <strong>outcome</strong>: does the transaction respect the constraints the user signed (merchant, amount, items)?</p>
+        </div>
+        <div>
+          <h4>FACT</h4>
+          <p>Verifies the <strong>behavior</strong>: did the agent's reasoning stay faithful to the user's intent throughout the negotiation?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>Why an independent layer</h2>
+      <p>FACT is designed as a third-party layer, outside payment networks and agent platforms, so it can stay interoperable and neutral. That independence is what lets merchants, issuers and regulators accept the same trust signal regardless of which payment protocol runs upstream (AP2, ACP, UCP, x402...). It's also what distinguishes FACT from trust mechanisms built directly into a single network or platform, which can't offer the same neutrality.</p>
+    </div>
+
+    <div class="fact-section">
+      <h2>Competitive watch</h2>
+      <p>FACT isn't the only proposal trying to answer "what did the agent actually do." Since early June 2026, several research and standards efforts have converged on the same problem from different angles.</p>
+      <div class="proto-list">
+        <div class="proto-row">
+          <span class="pname">RAILS <span class="org">&middot; arXiv preprint &middot; Jun 2026</span></span>
+          <a class="plink" href="https://arxiv.org/abs/2606.08790" target="_blank" rel="noopener">arXiv 2606.08790 &rarr;</a>
+          <p class="pdesc">The closest direct conceptual competitor: seven primitives (Obligation Object, Evidence Envelope, Verification Mesh, Clearing Decision, Settlement Instruction...) built to produce an actual clearing decision, not just a compliance record. Where FACT attests trust, RAILS argues you need a decision a settlement system can act on.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Notarized Agents <span class="org">&middot; arXiv preprint &middot; Jun 2026</span></span>
+          <a class="plink" href="https://arxiv.org/abs/2606.04193" target="_blank" rel="noopener">arXiv 2606.04193 &rarr;</a>
+          <p class="pdesc">Inverts the trust boundary: the service receiving an agent's call signs its own receipt, encrypts it to the agent's owner, and publishes it to a witness-cosigned transparency log. Challenges the need for a central auditor like FACT by having every counterparty self-attest instead.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">EMILIA Protocol <span class="org">&middot; open-source, active IETF Internet-Drafts</span></span>
+          <a class="plink" href="https://www.emiliaprotocol.ai/" target="_blank" rel="noopener">emiliaprotocol.ai &rarr;</a>
+          <p class="pdesc">A named human signs the exact high-risk action before it runs (payment, deploy, delete); the receipt is offline-verifiable and formally modeled (TLA+/Alloy). Overlaps FACT on pre-action authorization proof, but stops at the authorization moment rather than monitoring the agent's reasoning throughout.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">WIMSE Applicability for AI Agents <span class="org">&middot; IETF Internet-Draft</span></span>
+          <a class="plink" href="https://datatracker.ietf.org/doc/html/draft-ni-wimse-ai-agent-identity-02" target="_blank" rel="noopener">IETF Datatracker &rarr;</a>
+          <p class="pdesc">Extends the IETF's Workload Identity in Multi-System Environments work to AI agents, binding an agent's cryptographic identity to its owner. A potential standardization path for the "which agent instance did this" question FACT and ATLAS both need answered.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <h2>Complementary technologies</h2>
+      <p>These don't compete with FACT, they solve adjacent problems FACT could plug into rather than rebuild.</p>
+      <div class="proto-list">
+        <div class="proto-row">
+          <span class="pname">AI Agent Authorization Integration Framework <span class="org">&middot; IETF Internet-Draft, authors from Alibaba, Cisco, Okta</span></span>
+          <a class="plink" href="https://datatracker.ietf.org/doc/draft-liu-ai-agent-authorization-integration/" target="_blank" rel="noopener">IETF Datatracker &rarr;</a>
+          <p class="pdesc">Assembles existing OAuth 2.0, OpenID Connect and WIMSE building blocks into cross-domain identity, policy and multi-hop delegation for agents. Doesn't invent a new trust mechanism, but could hand FACT a ready-made identity chain to audit against.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">Agent Authorization Profile (AAP) for OAuth 2.0 <span class="org">&middot; IETF Internet-Draft</span></span>
+          <a class="plink" href="https://datatracker.ietf.org/doc/draft-aap-oauth-profile/" target="_blank" rel="noopener">IETF Datatracker &rarr;</a>
+          <p class="pdesc">Structured OAuth/JWT claims for agent identity, task context, delegation chains and human-oversight requirements. Gives FACT a standard place to read "who authorized this agent to do what" instead of parsing bespoke tokens per platform.</p>
+        </div>
+        <div class="proto-row">
+          <span class="pname">ERC-8004 <span class="org">&middot; Ethereum standard</span></span>
+          <a class="plink" href="https://eips.ethereum.org/EIPS/eip-8004" target="_blank" rel="noopener">eips.ethereum.org &rarr;</a>
+          <p class="pdesc">On-chain Identity, Reputation and Validation registries. Complements FACT's per-transaction attestation with a persistent, portable reputation record an auditor agent could check before it even starts monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
