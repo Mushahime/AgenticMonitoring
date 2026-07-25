@@ -11,5 +11,6 @@ desktop.ini
 # Local scratch
 *.tmp
 
-# More
+# Local-only routine backups (contains the weekly email recipient address - not for public repo).
+# The daily refresh SKILL.md is safe and lives in the tracked routines/ folder instead.
 /Skills(snapshots)/
