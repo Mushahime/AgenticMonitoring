@@ -4,8 +4,13 @@
 // and no PWA-only meta/link tags since those are GitHub-Pages-only concerns).
 const fs = require('fs');
 const path = require('path');
+const { sortAllPages } = require('./sort-pages.js');
 
 const SRC = path.join(__dirname, 'src');
+
+// Guarantee date order in code rather than relying on the routine always inserting
+// new items in the right spot - see sort-pages.js for why this exists.
+sortAllPages(path.join(SRC, 'pages'));
 const pageOrder = JSON.parse(fs.readFileSync(path.join(SRC, 'page-order.json'), 'utf8'));
 
 const read = (name) => fs.readFileSync(path.join(SRC, name), 'utf8');
