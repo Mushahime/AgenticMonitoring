@@ -24,6 +24,13 @@ function parseDateKey(str) {
   if (m && MONTHS[m[1]]) return [parseInt(m[2]) * 10000 + MONTHS[m[1]] * 100, true];
   m = str.match(/^(\d{4})$/); // bare "2026"
   if (m) return [parseInt(m[1]) * 10000, true];
+  // date ranges, e.g. "Aug 1-2, 2026", "Oct 18-21, 2026", "Sep 28 - Oct 1, 2026" -
+  // sort by the range's start date; still precise (not vague), just not a single day
+  m = str.match(/^([A-Za-z]{3})\s+(\d{1,2})\s*-\s*(?:[A-Za-z]{3}\s+)?\d{1,2},?\s*(\d{4})?$/);
+  if (m && MONTHS[m[1]]) {
+    const year = m[3] ? parseInt(m[3]) : 2026;
+    return [year * 10000 + MONTHS[m[1]] * 100 + parseInt(m[2]), false];
+  }
   return [-Infinity, true];
 }
 
