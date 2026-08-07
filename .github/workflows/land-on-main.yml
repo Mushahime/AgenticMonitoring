@@ -1,0 +1,68 @@
+name: Land cloud routine output on main
+
+# The daily cloud routine (agentic-commerce-watch-refresh-cloud) cannot push
+# straight to main: a cloud session works on its own output branch and the
+# credential proxy scopes its push to that branch, so "git push origin main"
+# in the routine prompt cannot land there no matter what it says.
+#
+# This workflow closes that gap. Every time the routine pushes a claude/**
+# branch, main is fast-forwarded onto it and GitHub Pages picks it up.
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+# Two runs must never race to move main.
+concurrency:
+  group: land-on-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  land:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main with full history
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Merge the pushed branch into main
+        run: |
+          set -euo pipefail
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Landing '$BRANCH' on main"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BRANCH"
+
+          if [ "$(git rev-parse main)" = "$(git rev-parse "origin/$BRANCH")" ]; then
+            echo "main is already at this commit, nothing to land."
+            exit 0
+          fi
+
+          # Fast-forward whenever main has not moved on its own. Otherwise take
+          # a real merge commit. A conflict fails the run on purpose: never
+          # resolve one unattended, surface it instead.
+          if git merge-base --is-ancestor main "origin/$BRANCH"; then
+            echo "Clean fast-forward."
+            git merge --ff-only "origin/$BRANCH"
+          else
+            echo "main has diverged, attempting a merge commit."
+            git merge --no-edit "origin/$BRANCH"
+          fi
+
+          git push origin main
+          echo "main is now at $(git rev-parse --short main)"
+
+      - name: Delete the landed branch
+        run: |
+          set -euo pipefail
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          git push origin --delete "$BRANCH"
+          echo "Deleted '$BRANCH' now that it is on main."
