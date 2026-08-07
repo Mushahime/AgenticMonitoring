@@ -129,7 +129,13 @@ function sortAllPages(pagesDir) {
     ['commerce.html', '<div class="grid">', '<article class="card">[\\s\\S]*?<\\/article>\\s*\\n?', 'card-date">([^<]*)<', {}],
     ['market.html', '<div class="grid">', '<article class="card">[\\s\\S]*?<\\/article>\\s*\\n?', 'card-date">([^<]*)<', {}],
     ['linkedin.html', '<div class="grid">', '<article class="card li-card">[\\s\\S]*?<\\/article>\\s*\\n?', 'class="author">([^<]*)<', {}],
-    ['fortnight.html', '<div class="digest">', '<div class="digest-row">.*?<\\/div>\\n?', 'digest-date">([^<]*)<', {}],
+    // \s*\n? not \n?: these files are checked out with CRLF, so a bare \n? never
+    // matches after the \r and the line breaks between rows fall outside every
+    // block, getting dropped at reassembly. No content is lost (all rows survive)
+    // but the whole digest collapses onto one 12k-character line, which makes the
+    // source and every future diff unreadable. The other jobs below already end
+    // with \s*\n? and were never affected.
+    ['fortnight.html', '<div class="digest">', '<div class="digest-row">.*?<\\/div>\\s*\\n?', 'digest-date">([^<]*)<', {}],
     ['events.html', '<div class="grid">', '<article class="card">[\\s\\S]*?<\\/article>\\s*\\n?', 'card-date">([^<]*)<', { ascending: true }],
   ];
   for (const [file, marker, blockRe, dateRe, opts] of jobs) {

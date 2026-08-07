@@ -68,7 +68,7 @@
         <div class="proto-row">
           <span class="pname">AP2 <span class="org">&middot; Agent Payments Protocol &middot; Google, donated to FIDO Alliance</span></span>
           <a class="plink" href="https://ap2-protocol.net/en/specification" target="_blank" rel="noopener">Specification &rarr;</a>
-          <p class="pdesc">Cryptographically-signed "Mandates" for delegated, verifiable agent payments. Open extension of A2A and MCP.</p>
+          <p class="pdesc">The authorization layer. Represents every agent purchase as signed Mandates: an Intent Mandate (the agent's reading of the user's request in natural language, with budget and constraints, signed by the user alone when human-not-present), a Cart Mandate (what the agent actually assembled, signed by the merchant then the user) and a Payment Mandate (what will be charged). Deliberately rail-agnostic - the same mandate can clear over a card network, a bank account or a stablecoin rail - so AP2 answers who authorized what and within which limits, never how the money moves. Open extension of A2A and MCP, under FIDO Alliance governance since Apr 28, 2026. Pairs with Verifiable Intent below: AP2 defines how intent is created and shared, VI defines how it is proven.</p>
         </div>
         <div class="proto-row">
           <span class="pname">x402 <span class="org">&middot; Coinbase, governed by the x402 Foundation (Linux Foundation)</span></span>
@@ -113,7 +113,7 @@
         <div class="proto-row">
           <span class="pname">Verifiable Intent (VI) <span class="org">&middot; Mastercard &amp; Google, open-sourced</span></span>
           <a class="plink" href="https://www.mastercard.com/us/en/news-and-trends/stories/2026/verifiable-intent.html" target="_blank" rel="noopener">Overview &amp; spec &rarr;</a>
-          <p class="pdesc">Tamper-resistant, selectively-disclosed proof of what a user authorized an agent to do, protocol-agnostic across AP2/UCP.</p>
+          <p class="pdesc">The proof layer that sits downstream of AP2. Turns an authorization into portable, tamper-resistant, selectively-disclosable cryptographic evidence that travels with the transaction through clearing and into dispute resolution, so a party that was not present when the user consented can still verify what was agreed. Not tied to one rail: Stripe, Adyen and Checkout.com translate an AP2 Mandate into a VI artifact for clearing on Mastercard rails, while the XRPL x402 Facilitator carries the same proof on-chain. The complement to AP2 above, not an alternative to it - AP2 creates and shares the intent, VI proves it.</p>
         </div>
         <div class="proto-row">
           <span class="pname">Klarna Agentic Product Protocol <span class="org">&middot; Dec 12, 2025</span></span>
